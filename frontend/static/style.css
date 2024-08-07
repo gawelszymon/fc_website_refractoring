@@ -1,0 +1,197 @@
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@300&family=Ubuntu:wght@500&display=swap');
+body {
+    font-family: 'Chakra Petch', sans-serif;
+}
+
+/* body {
+    background-image: url("background_photo_5.png");
+    background-size: cover;
+} */
+
+.navbar-nav {
+    padding-left: 50px;
+}
+
+.navbar-nav .nav-item {
+    margin: 0 35px;
+}
+
+.row {
+    margin-left: 100px;
+}
+
+#firstSection {
+    text-align: center;
+}
+
+#secondSection {
+    text-align: left;
+    font-size: 24px;
+}
+
+#anniversary {
+    font-size: 16px;
+    color: #333399;
+}
+
+#localization, #mail, #tel {
+    text-align: right;
+}
+
+#thirdSection p {
+    margin-bottom: 2px;
+    text-align: right;
+}
+
+#secondSection p {
+    margin-bottom: 2px;
+}
+
+#less100 {
+    font-size: 0;
+}
+
+#less p {
+    font-size: 0px;
+}
+
+@media (max-width: 1450px) {
+
+    #secondSection p {
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 1295px) {
+    .row {
+        margin-left: 0px;
+    }
+
+    #secondSection p {
+        text-align: left;
+        margin-left: 20px;
+    }
+}
+
+@media (max-width: 1095px) {
+    .row {
+            margin-left: 0px;
+    }
+
+    #secondSection p{
+            text-align: left;
+            margin-left: 20px;
+        }
+    
+    #name {
+        font-size: 22px;
+    }
+
+    #anniversary {
+        color: #333399;
+        font-size: 16px;
+    }
+
+    #localization,
+    #mail,
+    #tel {
+        text-align: right;
+        font-size: 16px;
+    }
+
+    #profilPhoto {
+        width: 85px;
+        height: auto;
+    }
+}
+
+@media (max-width: 940px) {
+    .row {
+            margin-left: 0px;
+    }
+
+    #secondSection p {
+        text-align: left;
+        margin-left: 35px;
+    }
+
+    #name {
+        font-size: 20px;
+    }
+
+    #anniversary {
+        color: #333399;
+        font-size: 14px;
+    }
+
+    #localization,
+    #mail,
+    #tel {
+        text-align: right;
+        font-size: 14px;
+    }
+
+    #profilPhoto {
+        width: 80px;
+        height: auto;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .row {
+            margin-left: 0px;
+        }
+
+    #name {
+        font-size: 20px;
+    }
+
+    #anniversary {
+        color: #333399;
+        font-size: 14px;
+    }
+
+    #localization,
+    #mail,
+    #tel {
+        text-align: right;
+        font-size: 14px;
+    }
+
+    #profilPhoto {
+        width: 80px;
+        height: auto;
+    }
+
+        #thirdSection p{
+            font-size: 0;
+        }
+    
+        #secondSection p{
+            font-size: 0px;
+        }
+
+        #firstSection {
+            text-align: right;
+        }
+
+        #less {
+            position: absolute;
+            right: 20px;
+            text-align: right;
+        }
+
+        #less p {
+            font-size: 14px;
+            margin-bottom:  2px;
+            text-align: right;
+        }
+
+        #less100 {
+            font-size: 15px;
+            margin-left: 30px;
+            color: #333399;
+            font-style: italic;
+        }
+}
