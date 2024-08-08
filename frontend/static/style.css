@@ -2,12 +2,14 @@
 body {
     font-family: 'Chakra Petch', sans-serif;
     /*background-image: url("background_photo_5.png");*/
+    background-color: #f8f9fa;
     background-size: cover;
 }
 
 .p-4.rounded {
     background-image: url("header_background.png");
     background-size: cover;
+    margin-bottom: 50px;
 }
 
 .navbar-nav {
@@ -146,6 +148,22 @@ body {
 
     .p-4.rounded {
         background-image: url("header_background_9.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 855px) {
+
+    .p-4.rounded {
+        background-image: url("header_background_10.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 767px) {
+
+    .p-4.rounded {
+        background-image: url("header_background_11.png");
         background-size: cover;
     }
 }
