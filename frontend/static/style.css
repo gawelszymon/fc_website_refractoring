@@ -1,12 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@300&family=Ubuntu:wght@500&display=swap');
 body {
     font-family: 'Chakra Petch', sans-serif;
+    /*background-image: url("background_photo_5.png");*/
+    background-size: cover;
 }
 
-/* body {
-    background-image: url("background_photo_5.png");
+.p-4.rounded {
+    background-image: url("header_background.png");
     background-size: cover;
-} */
+}
 
 .navbar-nav {
     padding-left: 50px;
@@ -41,6 +43,7 @@ body {
 #thirdSection p {
     margin-bottom: 2px;
     text-align: right;
+    color: white;
 }
 
 #secondSection p {
@@ -53,6 +56,59 @@ body {
 
 #less p {
     font-size: 0px;
+}
+
+/*pokaz slajdów*/
+
+.slideshow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.swiper {
+    width: 60%;
+    height: fit-content;
+    border-radius: 5px;
+}
+
+.swiper-slide img {
+    width: 100%;
+}
+
+@media (max-width: 1808px) {
+    .p-4.rounded {
+        background-image: url("header_background_2.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1682px) {
+    .p-4.rounded {
+        background-image: url("header_background_3.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1583px) {
+    .p-4.rounded {
+        background-image: url("header_background_4.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1459px) {
+    .p-4.rounded {
+        background-image: url("header_background_5.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1404px) {
+    .p-4.rounded {
+        background-image: url("header_background_6.png");
+        background-size: cover;
+    }
 }
 
 @media (max-width: 1450px) {
@@ -70,6 +126,27 @@ body {
     #secondSection p {
         text-align: left;
         margin-left: 20px;
+    }
+
+    .p-4.rounded {
+        background-image: url("header_background_7.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 1040px) {
+
+    .p-4.rounded {
+        background-image: url("header_background_8.png");
+        background-size: cover;
+    }
+}
+
+@media (max-width: 900px) {
+
+    .p-4.rounded {
+        background-image: url("header_background_9.png");
+        background-size: cover;
     }
 }
 
