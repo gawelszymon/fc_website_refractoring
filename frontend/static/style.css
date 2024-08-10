@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@300&family=Ubuntu:wght@500&display=swap');
 body {
     font-family: 'Chakra Petch', sans-serif;
-    /*background-image: url("background_photo_5.png");*/
-    background-color: #f8f9fa;
+    background-image: url("background_photo_5.png");
+    /* background-color: #f8f9fa;*/
     background-size: cover;
 }
 
@@ -58,6 +58,28 @@ body {
 
 #less p {
     font-size: 0px;
+}
+
+.fb_img_class {
+    width: 1.5em;
+    height: auto;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+}
+
+.ig_img_class {
+    width: 1.75em;
+    height: auto;
+    margin-right: 0.25em;
+    margin-left: 0.25em;
+}
+
+#facebook:hover {
+    opacity: 0.75;
+}
+
+#instagram:hover {
+    opacity: 0.75;
 }
 
 /*pokaz slajdów*/
