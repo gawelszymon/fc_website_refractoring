@@ -1,5 +1,8 @@
 from flask import Flask, jsonify, render_template, request
 from flask_cors import CORS # type: ignore #ignore
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 app = Flask(__name__, template_folder="../frontend/templates", static_folder='../frontend/static')
 CORS(app)
