@@ -20,6 +20,10 @@ def index():
 def academy():
     return render_template('academy.html')
 
+@app.route('/subacademy1')
+def subacademy1():
+    return render_template('subacademy1.html')
+
 @app.route('/senior')
 def senior():
     return render_template('senior.html')

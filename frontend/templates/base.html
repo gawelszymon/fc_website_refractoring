@@ -54,9 +54,15 @@
                             <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" aria-current="page" href="{{ url_for('index') }}"
                             style="{% if request.endpoint == 'index' %}color: #333399;{% else %}color: black;{% endif %}">Aktualności</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.endpoint == 'academy' %}active{% endif %}" href="{{url_for('academy')}}"
-                            style="{% if request.endpoint == 'academy' %}color: #333399;{% else %}color: black;{% endif %}">Akademia</a>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if request.endpoint == 'academy' or request.endpoint == 'subacademy1' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                            style="{% if request.endpoint == 'academy' or request.endpoint == 'subacademy1' %}color: #333399;{% else %}color: black;{% endif %}">
+                                Akademia
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item {% if request.endpoint == 'academy' %}active{% endif %}" href="{{url_for('academy')}}">Akademia - Główna</a></li>
+                                <li><a class="dropdown-item {% if request.endpoint == 'subacademy1' %}active{% endif %}" href="{{url_for('subacademy1')}}">Podstrona 1</a></li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.endpoint == 'senior' %}active{% endif %}" href="{{ url_for('senior') }}"
