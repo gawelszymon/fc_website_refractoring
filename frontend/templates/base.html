@@ -31,6 +31,7 @@
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="{{ url_for('static', filename='app.js') }}"></script>
+        <script src="{{ url_for('static', filename='forum_script.js') }}"></script>
         {%- endblock scripts %}
 
         
@@ -60,8 +61,8 @@
                                 Akademia
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <li><a class="dropdown-item {% if request.endpoint == 'academy' %}active{% endif %}" href="{{url_for('academy')}}">Akademia - Główna</a></li>
-                                <li><a class="dropdown-item {% if request.endpoint == 'subacademy1' %}active{% endif %}" href="{{url_for('subacademy1')}}">Podstrona 1</a></li>
+                                <li><a class="dropdown-item {% if request.endpoint == 'skrza' %}active{% endif %}" href="{{url_for('academy')}}">Skrzat</a></li>
+                                <li><a class="dropdown-item {% if request.endpoint == 'zakmlodszy' %}active{% endif %}" href="{{url_for('subacademy1')}}">Żak Młodszy</a></li>
                             </ul>
                         </li>
                         <li class="nav-item">

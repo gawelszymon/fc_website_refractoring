@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="forum-container">
+    <h1 id="forum-header">Share your feelings with other users</h1>
+    <div class="form-container">
+        <input type="text" id="username" placeholder="name">
+        <textarea id="content" placeholder="message"></textarea>
+
+        <select id="entry_type">
+            <option value="skrzat">Skrzat</option>
+            <option value="zak_mlodszy">Żak Młodszy</option>
+        </select>
+
+        <button onclick="addEntry()">Send</button>
+    </div>
+</div>
+{% endblock %}
+
+
+dodać panel wyboru id a nastepnie w js zmienic wywołanie get elementbyid w zalezności od wybreanego tutaj id
