@@ -3,31 +3,68 @@ function loadEntries() {
         .then(response => response.json())
         .then(data => {
 
+            console.log(data);
 
             data.forEach(entry => {
-                const entryDiv = document.createElement('div');
-                entryDiv.classList.add('entry');
 
-                const usernameDiv = document.createElement('div');
-                usernameDiv.classList.add('username');
-                usernameDiv.textContent = entry.username;
+                if (entry.entry_type === 'skrzat' && document.getElementById('entries1')) {
+                    entryType = document.getElementById('entries1');
 
-                const timestampDiv = document.createElement('div');
-                timestampDiv.classList.add('timestamp')
-                timestampDiv.textContent = entry.timestamp;
+                    const entriesContainer = entryType;
 
-                const contentDiv = document.createElement('div');
-                contentDiv.textContent = entry.content;
+                    const entryDiv = document.createElement('div');
+                    entryDiv.classList.add('entry');
 
-                const entry_typeDiv = document.createElement('div');
-                entry_typeDiv.textContent = document.createElement('div');
+                    const usernameDiv = document.createElement('div');
+                    usernameDiv.classList.add('username');
+                    usernameDiv.textContent = entry.username;
 
-                entryDiv.appendChild(usernameDiv);
-                entryDiv.appendChild(timestampDiv);
-                entryDiv.appendChild(contentDiv);
-                entryDiv.appendChild(entry_typeDiv);
+                    const timestampDiv = document.createElement('div');
+                    timestampDiv.classList.add('timestamp')
+                    timestampDiv.textContent = entry.timestamp;
 
-                entriesContainer.appendChild(entryDiv);
+                    const contentDiv = document.createElement('div');
+                    contentDiv.textContent = entry.content;
+
+                    const entry_typeDiv = document.createElement('div');
+                    entry_typeDiv.textContent = entry.entry_type;
+
+                    entryDiv.appendChild(usernameDiv);
+                    entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
+                    entryDiv.appendChild(contentDiv);
+                    entryDiv.appendChild(entry_typeDiv);
+
+                    entriesContainer.appendChild(entryDiv);
+                } else if (entry.entry_type === 'zak_mlodszy' && document.getElementById('entries2')) {
+                    entryType = document.getElementById('entries2');
+
+                    const entriesContainer = entryType;
+
+                    const entryDiv = document.createElement('div');
+                    entryDiv.classList.add('entry');
+
+                    const usernameDiv = document.createElement('div');
+                    usernameDiv.classList.add('username');
+                    usernameDiv.textContent = entry.username;
+
+                    const timestampDiv = document.createElement('div');
+                    timestampDiv.classList.add('timestamp')
+                    timestampDiv.textContent = entry.timestamp;
+
+                    const contentDiv = document.createElement('div');
+                    contentDiv.textContent = entry.content;
+
+                    const entry_typeDiv = document.createElement('div');
+                    entry_typeDiv.textContent = entry.entry_type;
+
+                    entryDiv.appendChild(usernameDiv);
+                    entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
+                    entryDiv.appendChild(contentDiv);
+                    entryDiv.appendChild(entry_typeDiv);
+
+                    entriesContainer.appendChild(entryDiv);
+                }
+
             })
         })
 }
@@ -53,6 +90,8 @@ function addEntry() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({username, content, entry_type})
+
+        // console.log()
     })
         .then(response => {
             if(!response.ok) {
