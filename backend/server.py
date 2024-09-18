@@ -51,9 +51,12 @@ def addpost():
 def add_entry():
     try:
         data = request.json
-        if not data or 'username' not in data or 'content' not in data:
-            return jsonify({"error": "Missing username or content"}), 400
         
+        print(data)
+        
+        if 'username' not in data or 'content' not in data or 'entry_type' not in data:
+            return jsonify({"error": "Missing username or content"}), 400
+                
         new_entry = Entry(
             username = data['username'],
             content=data['content'],

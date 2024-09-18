@@ -2,21 +2,11 @@ function loadEntries() {
     fetch('/get_entries')
         .then(response => response.json())
         .then(data => {
-            const entryType1 = document.getElementById('entries1').value;
-            const entryType2 = document.getElementById('entries2').value;
 
-            if(!entryType1) {
-                entryType = entryType2;
-            } else {
-                entryType = entryType1;
-            }
-
-            const entriesContainer = document.getElementById(entryType);
-            entriesContainer.innerHTML = '';
 
             data.forEach(entry => {
-                const entrtyDiv = document.createElement('div');
-                entrtyDiv.classList.add('entry');
+                const entryDiv = document.createElement('div');
+                entryDiv.classList.add('entry');
 
                 const usernameDiv = document.createElement('div');
                 usernameDiv.classList.add('username');
@@ -30,35 +20,39 @@ function loadEntries() {
                 contentDiv.textContent = entry.content;
 
                 const entry_typeDiv = document.createElement('div');
-                entry_typeDiv //TODO
+                entry_typeDiv.textContent = document.createElement('div');
 
-                entrtyDiv.appendChild(usernameDiv);
-                entrtyDiv.appendChild(timestampDiv)
-                entrtyDiv.appendChild(contentDiv)
+                entryDiv.appendChild(usernameDiv);
+                entryDiv.appendChild(timestampDiv);
+                entryDiv.appendChild(contentDiv);
+                entryDiv.appendChild(entry_typeDiv);
 
-                entriesContainer.appendChild(entrtyDiv);
+                entriesContainer.appendChild(entryDiv);
             })
         })
 }
 
 function addEntry() {
 
-    console.log("works");
-
     const username = document.getElementById('username').value;
     const content = document.getElementById('content').value;
+    const entry_type = document.getElementById('entry_type').value;
+
+    console.log(username);
 
     if (!username || !content) {
-        alert("Please fill in both username and content and content fields!");
+        alert("Please fill in both username content fields!");
         return;
     }
+
+    console.log('Sending data to server:', { username, content, entry_type });
 
     fetch('/add_entry', {       //fetch is utilized to get a request from a server
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({username, content})
+        body: JSON.stringify({username, content, entry_type})
     })
         .then(response => {
             if(!response.ok) {
@@ -70,12 +64,12 @@ function addEntry() {
             loadEntries();
             document.getElementById('username').value = '';
             document.getElementById('content').value = '';
+            document.getElementById('entry_type').value = '';
         })
         .catch(error => {
             console.error('errro: ', error.message);
         });
 
-    console.log(JSON.stringify({username, content}));
 }
 
 document.addEventListener('DOMContentLoaded', loadEntries); //call function loadentries after DOM loaded
