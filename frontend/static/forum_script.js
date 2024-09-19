@@ -26,15 +26,25 @@ function loadEntries() {
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
 
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
-
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
-                    entryDiv.appendChild(entry_typeDiv);
+
+                    if (window.location.pathname === '/addpost_adminacces_password=lksvistularzaska') {
+                        const entry_typeDiv = document.createElement('div');
+                        entry_typeDiv.textContent = entry.entry_type;
+
+                        const deleteButton = document.createElement('button');
+                        deleteButton.textContent = "Usuń wpis";
+                        deleteButton.addEventListener('click', function () {
+                            deleteEntry(entry.id);
+                        });
+
+                        entryDiv.appendChild(deleteButton);
+                    }
 
                     entriesContainer.appendChild(entryDiv);
+
                 } else if (entry.entry_type === 'zak_mlodszy' && document.getElementById('entries2')) {
                     entryType = document.getElementById('entries2');
 
@@ -100,15 +110,31 @@ function addEntry() {
             return response.json();
         })
         .then(data => {
-            loadEntries();
             document.getElementById('username').value = '';
             document.getElementById('content').value = '';
             document.getElementById('entry_type').value = '';
+            location.reload();
         })
         .catch(error => {
             console.error('errro: ', error.message);
         });
 
+}
+
+function deleteEntry(entryID) {
+    fetch(`/delete_entry/${entryID}`, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Delete entry error')
+        }
+
+        location.reload();
+    })
+    .catch(error => {
+        console.error(error.message);
+    });
 }
 
 document.addEventListener('DOMContentLoaded', loadEntries); //call function loadentries after DOM loaded

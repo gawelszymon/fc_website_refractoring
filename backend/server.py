@@ -76,6 +76,7 @@ def add_entry():
 def get_entries():
     entries = Entry.query.all()
     entries_list = [{
+        "id": entry.id,
         "username": entry.username,
         "content": entry.content,
         "timestamp": entry.timestamp,
@@ -83,6 +84,17 @@ def get_entries():
     } for entry in entries]
     
     return jsonify(entries_list)
+
+@app.route('/delete_entry/<int:entry_id>', methods=['DELETE'])
+def delete_entry(entry_id):
+    entry = Entry.query.get(entry_id)
+    if entry:
+        db.session.delete(entry)
+        db.session.commit()
+        return jsonify({"message": "Entry has been already delated"}), 200
+    else:
+        return jsonify({"error": "Entry has not been deleted"}), 404
+        
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5001, debug=True) #test
