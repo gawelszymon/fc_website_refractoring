@@ -35,7 +35,7 @@ function loadEntries() {
                         entry_typeDiv.textContent = entry.entry_type;
 
                         const deleteButton = document.createElement('button');
-                        deleteButton.textContent = "Usuń wpis";
+                        deleteButton.textContent = "Remove";
                         deleteButton.addEventListener('click', function () {
                             deleteEntry(entry.id);
                         });

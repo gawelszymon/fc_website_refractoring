@@ -1,6 +1,6 @@
 from datetime import datetime
-
-from flask import Flask, jsonify, render_template, request
+import os
+from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_cors import CORS  # type: ignore #ignore
 from flask_sqlalchemy import SQLAlchemy
 
@@ -20,8 +20,21 @@ class Entry(db.Model):  #table's name is created based on class name, but conver
     timestamp = db.Column(db.String(20), nullable=False)
     entry_type = db.Column(db.Text, nullable=False)
     
+class TeamDatabase(db.Model): #TODO
+    id = db.Column(db.Integer, primary_key=True)
+    group = db.Column(db.String(100), nullable=False)
+    coach = db.Column(db.String(100), nullable=False)
+    license = db.Column(db.String(50), nullable=False)
+    time = db.Column(db.String(50), nullable=False)
+    location = db.Column(db.String(150), nullable=False)
+    league = db.Column(db.String(100), nullable=False)
+    table_url = db.Column(db.String(255), nullable=False)
+    photo_endpoint = db.Column(db.String(255), nullable=False)
+    
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
     db.create_all()           #avability to databse needs this context, "db.create_all" it's like a safeguard for ovetwriting- not to multiplicate some content
+
+TEAMS_PHOTOS_DIR = 'teams_photos'
 
 @app.route('/')
 def index():
@@ -95,6 +108,15 @@ def delete_entry(entry_id):
     else:
         return jsonify({"error": "Entry has not been deleted"}), 404
         
+
+@app.route('/teams_photos')
+def list_images():
+    files = [f for f in os.listdir(TEAMS_PHOTOS_DIR) if f.endswith('.png')]
+    return jsonify(files)
+
+@app.route('/teams_photos/<photo>')
+def serve_images(photo):
+    return send_from_directory(TEAMS_PHOTOS_DIR, photo) #TODO
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5001, debug=True) #test

@@ -100,6 +100,114 @@ body {
     width: 100%;
 }
 
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-container input[type="text"],
+.form-container textarea,
+.form-container select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+}
+
+.form-container input[type="text"]:focus,
+.form-container textarea:focus,
+.form-container select:focus {
+    border-color: #5d9cec;
+    outline: none;
+}
+
+.form-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5d9cec;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-container button:hover {
+    background-color: #4a8ed4;
+}
+
+.form-container textarea {
+    height: 100px;
+    resize: none;
+    font-family: 'Arial', sans-serif;
+}
+
+.form-container select {
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+}
+
+#entries1,
+#entries2 {
+    width: 100%;
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0;
+    list-style: none;
+}
+
+.entry {
+    background-color: #f9f9fc;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.entry .username {
+    font-weight: bold;
+    color: #333;
+}
+
+.entry .timestamp {
+    font-size: 12px;
+    color: #777;
+}
+
+.entry div {
+    font-size: 16px;
+    color: #555;
+}
+
+.entry button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #5d9cec;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.entry button:hover {
+    background-color: #4a8ed4;
+}
+
 @media (max-width: 1808px) {
     .p-4.rounded {
         background-image: url("header_background_2.png");
