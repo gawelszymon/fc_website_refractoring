@@ -138,3 +138,6 @@ function deleteEntry(entryID) {
 }
 
 document.addEventListener('DOMContentLoaded', loadEntries); //call function loadentries after DOM loaded
+
+
+//handler it's a function which is assigned to the particular event in js, When this event occurs, the handler is called 

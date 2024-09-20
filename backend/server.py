@@ -118,5 +118,22 @@ def list_images():
 def serve_images(photo):
     return send_from_directory(TEAMS_PHOTOS_DIR, photo) #TODO
 
+@app.route('/api/team/<group_name>')
+def get_team_data(group_name):
+    team = TeamDatabase.query.filter_by(group=group_name).first()
+    if team:
+        return {
+            "group": team.group,
+            "coach": team.coach,
+            "license": team.license,
+            "time": team.time,
+            "location": team.location,
+            "league": team.league,
+            "table_url": team.table_url,
+            "photo_endpoint": team.photo_endpoint            
+        }
+    else:
+        return{"error": "There is not accurate team"}, 404
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5001, debug=True) #test
