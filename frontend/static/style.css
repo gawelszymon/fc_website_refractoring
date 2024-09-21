@@ -82,6 +82,67 @@ body {
     opacity: 0.75;
 }
 
+/* Stylizacja sekcji z informacjami o drużynie */
+#group-info {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+#group-info h1 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#group-info p {
+    font-size: 16px;
+    margin: 8px 0;
+}
+
+#group-info p#coach {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+#group-info p#license,
+#group-info p#time,
+#group-info p#location,
+#group-info p#league {
+    font-size: 14px;
+    color: #555;
+}
+
+#group-info a#table-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #333399;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+#group-info a#table-link:hover {
+    opacity: 0.90;
+}
+
+#group-info img#team-photo {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 20px auto 0;
+    border-radius: 10px;
+}
+
 /*pokaz slajdów*/
 
 .slideshow-container {
@@ -161,7 +222,7 @@ body {
 #entries1,
 #entries2 {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: 20px auto;
     padding: 0;
     list-style: none;

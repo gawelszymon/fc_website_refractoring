@@ -1,4 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
+<div id="group-info">
+    <h1 id="group-name"></h1>
+    <p id="coach"></p>
+    <p id="license"></p>
+    <p id="time"></p>
+    <p id="location"></p>
+    <p id="league"></p>
+    <a id="table-link" href="#">Link do tabeli</a>
+    <img id="team-photo" src="" alt="Zdjęcie drużyny">
+</div>
+
 <div id="entries2"></div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        fetchTeamData('Żak Młodszy');
+    });
+
+    document.addEventListener('DOMContentLoaded', loadEntries);
+</script>
 {% endblock %}
