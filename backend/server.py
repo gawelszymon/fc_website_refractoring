@@ -56,7 +56,7 @@ def senior():
 def about():
     return render_template('about.html')
 
-@app.route('/addpost_adminacces_password=lksvistularzaska')
+@app.route('/addpost_adminaccess_password=lksvistularzaska')
 def addpost():
     return render_template('addpost.html')
 

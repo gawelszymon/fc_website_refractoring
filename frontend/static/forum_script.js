@@ -30,7 +30,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminacces_password=lksvistularzaska') {
+                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 

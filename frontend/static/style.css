@@ -163,10 +163,10 @@ body {
 
 .form-container {
     width: 100%;
-    max-width: 600px;
+    max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f4f4f9;
+    background-color: #f9f9fc;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -189,7 +189,7 @@ body {
 .form-container input[type="text"]:focus,
 .form-container textarea:focus,
 .form-container select:focus {
-    border-color: #5d9cec;
+    border-color: #333399;
     outline: none;
 }
 
@@ -197,7 +197,7 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #5d9cec;
+    background-color: #333399;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -205,7 +205,7 @@ body {
 }
 
 .form-container button:hover {
-    background-color: #4a8ed4;
+    opacity: 0.9;
 }
 
 .form-container textarea {
@@ -240,6 +240,7 @@ body {
 }
 
 .entry .username {
+    font-size: 15px;
     font-weight: bold;
     color: #333;
 }
@@ -250,7 +251,7 @@ body {
 }
 
 .entry div {
-    font-size: 16px;
+    font-size: 17px;
     color: #555;
 }
 
@@ -258,7 +259,7 @@ body {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #5d9cec;
+    background-color: #333399;
     color: white;
     font-size: 16px;
     cursor: pointer;
@@ -266,7 +267,7 @@ body {
 }
 
 .entry button:hover {
-    background-color: #4a8ed4;
+    opacity: 0.9;
 }
 
 @media (max-width: 1808px) {
