@@ -143,6 +143,86 @@ body {
     border-radius: 10px;
 }
 
+/* Stylizacja kontenera formularza */
+form {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+form label {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+/* Stylizacja pól tekstowych */
+form input[type="text"],
+form input[type="url"],
+form select,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: white;
+    transition: all 0.3s ease;
+}
+
+form input[type="text"]:focus,
+form input[type="url"]:focus,
+form select:focus,
+form textarea:focus {
+    outline: none;
+    border-color: #333399;
+    background-color: #fff;
+}
+
+/* Stylizacja przycisku */
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #333399;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    opacity: 0.90;
+}
+
+/* Stylizacja elementu select */
+form select {
+    background-color: #fff;
+    color: #333;
+}
+
+/* Efekty hover i focus dla select */
+form select:hover,
+form select:focus {
+    border-color: #333399;
+}
+
+/* Stylizacja kontenera formularza na mniejszych ekranach */
+@media (max-width: 600px) {
+    form {
+        padding: 15px;
+        font-size: 14px;
+    }
+}
+
 /*pokaz slajdów*/
 
 .slideshow-container {

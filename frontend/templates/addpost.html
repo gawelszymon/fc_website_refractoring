@@ -14,5 +14,37 @@
         <button onclick="addEntry()">Send</button>
     </div>
     <div id="entries1"></div>
+    
+    <form id="update-team-form" onsubmit="event.preventDefault(); updateTeamData(document.getElementById('group-input').value);">
+        <label for="group-input">Group:</label>
+        <select id="group-input" required>
+            <option value="Skrzat">Skrzat</option>
+            <option value="Żak Młodszy">Żak Młodszy</option>
+        </select>
+
+        <label for="coach-input">Coach:</label>
+        <input type="text" id="coach-input" placeholder="coach's name" required>
+
+        <label for="license-input">License:</label>
+        <input type="text" id="license-input" placeholder="coach's license" required>
+
+        <label for="time-input">Trainings time:</label>
+        <input type="text" id="time-input" placeholder="training's time" required>
+
+        <label for="location-input">Trainings destination:</label>
+        <input type="text" id="location-input" placeholder="training's destination" required>
+
+        <label for="league-input">Division:</label>
+        <input type="text" id="league-input" placeholder="division" required>
+
+        <label for="table-url-input">Table address:</label>
+        <input type="url" id="table-url-input" placeholder="table address" required>
+
+        <label for="photo-endpoint-input">Team photo address:</label>
+        <input type="url" id="photo-endpoint-input" placeholder="team's photo address" required>
+
+        <button type="submit">Update</button>
+    </form>
+
 </div>
 {% endblock %}

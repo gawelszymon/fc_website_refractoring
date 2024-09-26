@@ -17,3 +17,33 @@ function fetchTeamData(groupName) {
         })
         .catch(error => console.error('Error fetching team data:', error));
 }
+
+function updateTeamData(groupName) {
+    const updateTeamData = {
+        group: groupName,
+        coach: document.getElementById('coach-input').value,
+        license: document.getElementById('license-input').value,
+        time: document.getElementById('time-input').value,
+        location: document.getElementById('location-input').value,
+        league: document.getElementById('league-input').value,
+        table_url: document.getElementById('table-url-input').value,
+        photo_endpoint: document.getElementById('photo-endpoint-input').value
+    };
+
+    fetch(`/api/team/update`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(updateTeamData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('succes: ', data);
+        alert('INFO: team data updated successfully');
+    })
+    .catch(error => {
+        console.error("error while updating team data: ", error);
+        alert('ERROR: team data does not updated');
+    })
+}

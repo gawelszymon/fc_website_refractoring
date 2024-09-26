@@ -1,5 +1,6 @@
-from datetime import datetime
 import os
+from datetime import datetime
+
 from flask import Flask, jsonify, render_template, request, send_from_directory
 from flask_cors import CORS  # type: ignore #ignore
 from flask_sqlalchemy import SQLAlchemy
@@ -22,7 +23,7 @@ class Entry(db.Model):  #table's name is created based on class name, but conver
     
 class TeamDatabase(db.Model): #TODO
     id = db.Column(db.Integer, primary_key=True)
-    group = db.Column(db.String(100), nullable=False)
+    group = db.Column(db.String(100), nullable=False, unique=True)
     coach = db.Column(db.String(100), nullable=False)
     license = db.Column(db.String(50), nullable=False)
     time = db.Column(db.String(50), nullable=False)
@@ -134,6 +135,27 @@ def get_team_data(group_name):
         }
     else:
         return{"error": "There is not accurate team"}, 404
+    
+@app.route('/api/team/update', methods=['PUT'])
+def update_team_data():
+    data = request.get_json()
+    team = TeamDatabase.query.filter_by(group=data['group']).first()
+
+    if not team:
+        return {"error": "Team not found"}, 404
+
+    team.coach = data['coach']
+    team.license = data['license']
+    team.time = data['time']
+    team.location = data['location']
+    team.league = data['league']
+    team.table_url = data['table_url']
+    team.photo_endpoint = data['photo_endpoint']
+
+    db.session.commit()
+
+    return {"message": "Team data updated successfully"}
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5001, debug=True) #test
