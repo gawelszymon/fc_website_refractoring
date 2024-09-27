@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-<div id="group-info">
+<div id="subpage-info">
     <h1 id="group-name"></h1>
     <p id="coach"></p>
     <p id="license"></p>
@@ -11,11 +11,11 @@
     <img id="team-photo" src="" alt="Zdjęcie drużyny">
 </div>
 
-<div id="entries2"></div>
+<div id="entries3"></div>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        fetchTeamData('Żak Młodszy');
+        fetchTeamData('subacademy3');
     });
 
     document.addEventListener('DOMContentLoaded', loadEntries);

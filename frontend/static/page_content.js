@@ -1,9 +1,9 @@
-function fetchTeamData(groupName) {
-    fetch(`/api/team/${groupName}`)
+function fetchTeamData(subpageName) {
+    fetch(`/api/team/${subpageName}`)
         .then(response => response.json())
         .then(data => {
             if (data.error) {
-                document.getElementById('group-info').innerHTML = '<p>Team not found</p>';
+                document.getElementById('subpage-info').innerHTML = '<p>Team not found</p>';
             } else {
                 document.getElementById('group-name').innerText = `Grupa: ${data.group}`;
                 document.getElementById('coach').innerText = `Trener: ${data.coach}`;
@@ -18,9 +18,10 @@ function fetchTeamData(groupName) {
         .catch(error => console.error('Error fetching team data:', error));
 }
 
-function updateTeamData(groupName) {
+function updateTeamData(subpageName) {
     const updateTeamData = {
-        group: groupName,
+        subpage: subpageName,
+        group: document.getElementById('group-input').value,
         coach: document.getElementById('coach-input').value,
         license: document.getElementById('license-input').value,
         time: document.getElementById('time-input').value,

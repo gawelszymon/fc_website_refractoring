@@ -23,7 +23,8 @@ class Entry(db.Model):  #table's name is created based on class name, but conver
     
 class TeamDatabase(db.Model): #TODO
     id = db.Column(db.Integer, primary_key=True)
-    group = db.Column(db.String(100), nullable=False, unique=True)
+    subpage = db.Column(db.String(100), nullable=False, unique=True)
+    group = db.Column(db.String(100), nullable=False)
     coach = db.Column(db.String(100), nullable=False)
     license = db.Column(db.String(50), nullable=False)
     time = db.Column(db.String(50), nullable=False)
@@ -31,6 +32,15 @@ class TeamDatabase(db.Model): #TODO
     league = db.Column(db.String(100), nullable=False)
     table_url = db.Column(db.String(255), nullable=False)
     photo_endpoint = db.Column(db.String(255), nullable=False)
+
+class Page(db.Model):
+    __tablename__ = 'pages'
+
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    page_name = db.Column(db.String(100), nullable=False, unique=True)
+    display_name = db.Column(db.String(100), nullable=False)
+    is_active = db.Column(db.Boolean, nullable=False)
+
     
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
     db.create_all()           #avability to databse needs this context, "db.create_all" it's like a safeguard for ovetwriting- not to multiplicate some content
@@ -41,13 +51,17 @@ TEAMS_PHOTOS_DIR = 'teams_photos'
 def index():
     return render_template('index.html')
 
-@app.route('/skrzat')
-def academy():
-    return render_template('skrzat.html')
-
-@app.route('/zakmlodszy')
+@app.route('/subacademy1')
 def subacademy1():
-    return render_template('zakmlodszy.html')
+    return render_template('team1.html')
+
+@app.route('/subacademy2')
+def subacademy2():
+    return render_template('team2.html')
+
+@app.route('/subacademy3')
+def subacademy3():
+    return render_template('team3.html')
 
 @app.route('/senior')
 def senior():
@@ -121,9 +135,10 @@ def serve_images(photo):
 
 @app.route('/api/team/<group_name>')
 def get_team_data(group_name):
-    team = TeamDatabase.query.filter_by(group=group_name).first()
+    team = TeamDatabase.query.filter_by(subpage=group_name).first()
     if team:
         return {
+            "subpage": team.subpage,
             "group": team.group,
             "coach": team.coach,
             "license": team.license,
@@ -139,11 +154,12 @@ def get_team_data(group_name):
 @app.route('/api/team/update', methods=['PUT'])
 def update_team_data():
     data = request.get_json()
-    team = TeamDatabase.query.filter_by(group=data['group']).first()
+    team = TeamDatabase.query.filter_by(subpage=data['subpage']).first()
 
     if not team:
         return {"error": "Team not found"}, 404
 
+    team.group = data['group']
     team.coach = data['coach']
     team.license = data['license']
     team.time = data['time']
@@ -156,6 +172,35 @@ def update_team_data():
 
     return {"message": "Team data updated successfully"}
 
+@app.route('/api/pages', methods=['GET'])
+def get_pages():
+    pages = Page.query.all()
+    return jsonify([{
+        'id': page.id,
+        "page_name": page.page_name,
+        "display_name": page.display_name,
+        "is_active": page.is_active
+    } for page in pages])
+
+@app.route('/api/pages/<int:id>', methods=['PUT'])
+def update_page(id):
+    page = Page.query.get(id)
+    if page is None:
+        return jsonify({'error': 'Page not found'}), 404
+
+    data = request.json
+    page.display_name = data.get('display_name', page.display_name)
+    page.is_active = data.get('is_active', page.is_active)
+    
+    db.session.commit()
+
+    return jsonify({'success': True})
+
+
+@app.context_processor
+def inject_pages():
+    pages = Page.query.filter_by(is_active=True).all()
+    return dict(pages=pages)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5001, debug=True) #test

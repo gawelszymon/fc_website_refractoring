@@ -83,7 +83,7 @@ body {
 }
 
 /* Stylizacja sekcji z informacjami o drużynie */
-#group-info {
+#subpage-info {
     background-color: #ffffff;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -93,7 +93,7 @@ body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-#group-info h1 {
+#subpage-info h1 {
     font-size: 28px;
     text-align: center;
     margin-bottom: 15px;
@@ -101,25 +101,25 @@ body {
     letter-spacing: 2px;
 }
 
-#group-info p {
+#subpage-info p {
     font-size: 16px;
     margin: 8px 0;
 }
 
-#group-info p#coach {
+#subpage-info p#coach {
     font-weight: bold;
     font-size: 18px;
 }
 
-#group-info p#license,
-#group-info p#time,
-#group-info p#location,
-#group-info p#league {
+#subpage-info p#license,
+#subpage-info p#time,
+#subpage-info p#location,
+#subpage-info p#league {
     font-size: 14px;
     color: #555;
 }
 
-#group-info a#table-link {
+#subpage-info a#table-link {
     display: inline-block;
     margin-top: 20px;
     padding: 10px 20px;
@@ -131,11 +131,11 @@ body {
     transition: background-color 0.3s ease;
 }
 
-#group-info a#table-link:hover {
+#subpage-info a#table-link:hover {
     opacity: 0.90;
 }
 
-#group-info img#team-photo {
+#subpage-info img#team-photo {
     display: block;
     max-width: 100%;
     height: auto;
@@ -151,6 +151,7 @@ form {
     background-color: #f9f9fc;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
 }
 
 form label {
@@ -161,7 +162,6 @@ form label {
     color: #333;
 }
 
-/* Stylizacja pól tekstowych */
 form input[type="text"],
 form input[type="url"],
 form select,
@@ -221,6 +221,94 @@ form select:focus {
         padding: 15px;
         font-size: 14px;
     }
+}
+
+/* Stylizacja tabeli */
+table {
+    width: 100%;
+    max-width: 800px;
+    margin: 20px auto;
+    margin-top: 200px;
+    border-collapse: collapse;
+    background-color: #f9f9fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+#th1 {
+    border-top-left-radius: 10px;
+}
+
+#th2 {
+    border-top-right-radius: 10px;
+}
+
+thead th {
+    background-color: #333399;
+    color: white;
+    font-size: 16px;
+    padding: 12px;
+    text-align: left;    
+}
+
+tbody td {
+    padding: 12px;
+    font-size: 14px;
+    color: #333;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f1f1f7;
+}
+
+tbody tr:hover {
+    background-color: #e6e6f2;
+}
+
+/* Stylizacja pól tekstowych w tabeli */
+tbody td input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+tbody td input[type="text"]:focus {
+    border-color: #333399;
+    background-color: white;
+}
+
+/* Stylizacja checkboxów */
+tbody td input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: #333399;
+    /* Kolor zaznaczenia */
+}
+
+/* Stylizacja przycisku zapisu */
+tbody td button {
+    padding: 10px 15px;
+    background-color: #333399;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
+}
+
+tbody td button:hover {
+    opacity: 0.9;
+}
+
+tbody td button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
 }
 
 /*pokaz slajdów*/
@@ -300,7 +388,8 @@ form select:focus {
 }
 
 #entries1,
-#entries2 {
+#entries2,
+#entries3 {
     width: 100%;
     max-width: 800px;
     margin: 20px auto;

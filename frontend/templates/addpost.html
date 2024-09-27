@@ -7,20 +7,39 @@
         <textarea id="content" placeholder="message"></textarea>
 
         <select id="entry_type">
-            <option value="skrzat">Skrzat</option>
-            <option value="zak_mlodszy">Żak Młodszy</option>
+            <option value="subacademy1">subacademy1</option>
+            <option value="subacademy2">subacademy2</option>
+            <option value="subacademy3">subacademy3</option>
         </select>
 
         <button onclick="addEntry()">Send</button>
     </div>
     <div id="entries1"></div>
+    <div id="entries2"></div>
+    <div id="entries3"></div>
     
-    <form id="update-team-form" onsubmit="event.preventDefault(); updateTeamData(document.getElementById('group-input').value);">
-        <label for="group-input">Group:</label>
-        <select id="group-input" required>
-            <option value="Skrzat">Skrzat</option>
-            <option value="Żak Młodszy">Żak Młodszy</option>
+    <table>
+        <thead>
+            <tr>
+                <th id="th1">Subpage's Name</th>
+                <th>Displayed Name</th>
+                <th>Active</th>
+                <th id="th2"></th>
+            </tr>
+        </thead>
+        <tbody id="pages-list"></tbody>
+    </table>    
+
+    <form id="update-team-form" onsubmit="event.preventDefault(); updateTeamData(document.getElementById('subpage-input').value);">
+        <label for="subpage-input">Subpage:</label>
+        <select id="subpage-input" required>
+            <option value="subacademy1">subacademy1</option>
+            <option value="subacademy2">subacademy2</option>
+            <option value="subacademy3">subacademy3</option>
         </select>
+
+        <label for="group-input">Group:</label>
+        <input type="text" id="group-input" placeholder="group's name" required>
 
         <label for="coach-input">Coach:</label>
         <input type="text" id="coach-input" placeholder="coach's name" required>
@@ -28,10 +47,10 @@
         <label for="license-input">License:</label>
         <input type="text" id="license-input" placeholder="coach's license" required>
 
-        <label for="time-input">Trainings time:</label>
+        <label for="time-input">Training's time:</label>
         <input type="text" id="time-input" placeholder="training's time" required>
 
-        <label for="location-input">Trainings destination:</label>
+        <label for="location-input">Training's destination:</label>
         <input type="text" id="location-input" placeholder="training's destination" required>
 
         <label for="league-input">Division:</label>
