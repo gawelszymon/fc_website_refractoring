@@ -5,7 +5,7 @@ function fetchTeamData(subpageName) {
             if (data.error) {
                 document.getElementById('subpage-info').innerHTML = '<p>Team not found</p>';
             } else {
-                document.getElementById('group-name').innerText = `Grupa: ${data.group}`;
+                document.getElementById('group-name').innerText = data.group;
                 document.getElementById('coach').innerText = `Trener: ${data.coach}`;
                 document.getElementById('license').innerText = `Licencja: ${data.license}`;
                 document.getElementById('time').innerText = `Czas treningów: ${data.time}`;

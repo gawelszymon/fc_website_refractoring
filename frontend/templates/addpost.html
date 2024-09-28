@@ -7,6 +7,7 @@
         <textarea id="content" placeholder="message"></textarea>
 
         <select id="entry_type">
+            <option value="senior">senior</option>
             <option value="subacademy1">subacademy1</option>
             <option value="subacademy2">subacademy2</option>
             <option value="subacademy3">subacademy3</option>
@@ -14,6 +15,7 @@
 
         <button onclick="addEntry()">Send</button>
     </div>
+    <div id ="entries_senior"></div>
     <div id="entries1"></div>
     <div id="entries2"></div>
     <div id="entries3"></div>
@@ -33,6 +35,7 @@
     <form id="update-team-form" onsubmit="event.preventDefault(); updateTeamData(document.getElementById('subpage-input').value);">
         <label for="subpage-input">Subpage:</label>
         <select id="subpage-input" required>
+            <option value="senior">senior</option>
             <option value="subacademy1">subacademy1</option>
             <option value="subacademy2">subacademy2</option>
             <option value="subacademy3">subacademy3</option>
