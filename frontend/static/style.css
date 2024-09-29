@@ -1,9 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@600&family=Montserrat:ital,wght@0,400;0,700;1,400&family=Roboto+Condensed:wght@300&family=Ubuntu:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Changa:wght@200..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Moulpali&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 body {
-    font-family: 'Chakra Petch', sans-serif;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
     background-image: url("background_photo_5.png");
     /* background-color: #f8f9fa;*/
     background-size: cover;
+}
+
+.navbar {
+    background-color: #f9f9fc !important;
+}
+
+.navbar-brand {
+    font-weight: 400;
+    font-style: italic;
+}
+
+#name {
+    font-weight: 400;
+    font-style: italic;
+}
+
+#anniversary, #less100 {
+    font-style: italic;
+    font-weight: 500;
 }
 
 .p-4.rounded {
@@ -84,17 +104,17 @@ body {
 
 /* TEAM INFO */
 #subpage-info {
-    background-color: #ffffff;
+    background-color: #f9f9fc;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 20px;
     max-width: 800px;
     margin: 20px auto;
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
 }
 
 #subpage-info h1 {
-    font-size: 28px;
+    font-size: 30px;
     text-align: center;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -102,20 +122,20 @@ body {
 }
 
 #subpage-info p {
-    font-size: 16px;
+    font-size: 20px;
     margin: 8px 0;
 }
 
 #subpage-info p#coach {
     font-weight: bold;
-    font-size: 18px;
+    font-size: 22px;
 }
 
 #subpage-info p#license,
 #subpage-info p#time,
 #subpage-info p#location,
 #subpage-info p#league {
-    font-size: 14px;
+    font-size: 18px;
     color: #555;
 }
 
@@ -417,11 +437,9 @@ tbody td button:disabled {
 .form-container textarea {
     height: 100px;
     resize: none;
-    font-family: 'Arial', sans-serif;
 }
 
 .form-container select {
-    font-family: 'Arial', sans-serif;
     cursor: pointer;
 }
 
