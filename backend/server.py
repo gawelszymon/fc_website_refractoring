@@ -63,6 +63,30 @@ def subacademy2():
 def subacademy3():
     return render_template('team3.html')
 
+@app.route('/subacademy4')
+def subacademy4():
+    return render_template('team4.html')
+
+@app.route('/subacademy5')
+def subacademy5():
+    return render_template('team5.html')
+
+@app.route('/subacademy6')
+def subacademy6():
+    return render_template('team6.html')
+
+@app.route('/subacademy7')
+def subacademy7():
+    return render_template('team7.html')
+
+@app.route('/subacademy8')
+def subacademy8():
+    return render_template('team8.html')
+
+@app.route('/subacademy9')
+def subacademy9():
+    return render_template('team9.html')
+
 @app.route('/senior')
 def senior():
     return render_template('senior.html')
