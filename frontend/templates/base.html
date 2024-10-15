@@ -58,7 +58,9 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {% if request.endpoint == 'academy' or request.endpoint == 'subacademy1' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
-                            style="{% if request.endpoint == 'academy' or request.endpoint == 'subacademy1' %}color: #333399;{% else %}color: black;{% endif %}">
+                            style="{% if request.endpoint == 'subacademy1' or request.endpoint == 'subacademy2' or request.endpoint == 'subacademy3'
+                            or request.endpoint == 'subacademy4' or request.endpoint == 'subacademy5' or request.endpoint == 'subacademy6' or request.endpoint == 'subacademy7'
+                            or request.endpoint == 'subacademy8' or request.endpoint == 'subacademy9' %}color: #333399;{% else %}color: black;{% endif %}">
                                 Akademia
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -73,7 +75,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}"
-                            style="{% if request.endpoint == 'about' %}color: #333399;{% else %}color: black;{% endif %}">O Klubie</a>
+                            style="{% if request.endpoint == 'about' %}color: #333399;{% else %}color: black;{% endif %}">O&nbsp;Klubie</a>
                         </li>
                     </ul>
                     <!-- <form class="d-flex">

@@ -1,6 +1,6 @@
-@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Changa:wght@200..800&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Moulpali&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&display=swap');
 body {
-    font-family: "Roboto", sans-serif;
+    font-family: "Afacad Flux", sans-serif;
     font-weight: 400;
     background-image: url("background_photo_5.png");
     /* background-color: #f8f9fa;*/
@@ -11,14 +11,30 @@ body {
     background-color: #f9f9fc !important;
 }
 
+.navbar-nav {
+    display: flex;
+    width: 75%;
+    gap: 5px;
+}
+
+.nav-item {
+    flex: 1;
+    text-align: center;
+}
+
 .navbar-brand {
-    font-weight: 400;
-    font-style: italic;
+    font-weight: 500;
+    transform: scale(1.15);
+    transform-origin: left center;
+}
+
+.nav-link {
+    transform: scale(1.1);
+    transform-origin: left center;
 }
 
 #name {
-    font-weight: 400;
-    font-style: italic;
+    font-weight: 500;
 }
 
 #anniversary, #less100 {
@@ -38,6 +54,11 @@ body {
 
 .navbar-nav .nav-item {
     margin: 0 35px;
+}
+
+.dropdown-item:hover {
+    background-color: whitesmoke;
+    color: black;
 }
 
 .row {
@@ -398,6 +419,7 @@ tbody td button:disabled {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    margin-bottom: 50px;
 }
 
 .form-container input[type="text"],
@@ -443,9 +465,16 @@ tbody td button:disabled {
     cursor: pointer;
 }
 
+#entries0-panel,
 #entries1,
 #entries2,
 #entries3,
+#entries4,
+#entries5,
+#entries6,
+#entries7,
+#entries8,
+#entries9,
 #entries_senior {
     width: 100%;
     max-width: 800px;
@@ -454,10 +483,23 @@ tbody td button:disabled {
     list-style: none;
 }
 
+.entries-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.main-entry {
+    width: 60%;
+    height: fit-content;
+    border-radius: 5px;
+}
+
 .entry {
     background-color: #f9f9fc;
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 30px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
