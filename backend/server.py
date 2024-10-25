@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
 
-from flask import Flask, jsonify, render_template, request, send_from_directory
+from flask import Flask, jsonify, render_template, request, send_from_directory, abort
 from flask_cors import CORS  # type: ignore #ignore
 from flask_sqlalchemy import SQLAlchemy
 
@@ -95,7 +95,7 @@ def senior():
 def about():
     return render_template('about.html')
 
-@app.route('/addpost_adminaccess_password=lksvistularzaska')
+@app.route('/admin_panel/password/vistula_rzaska_1925_admin_access')
 def addpost():
     return render_template('addpost.html')
 

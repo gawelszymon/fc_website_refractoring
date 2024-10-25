@@ -33,6 +33,11 @@ body {
     transform-origin: left center;
 }
 
+/* #profilPhoto {
+    height: 90px;
+    width: auto;
+} */
+
 #name {
     font-weight: 500;
 }

@@ -87,8 +87,8 @@
             </div>
             </div>
             <div class="col-md-1">
-                <img class="fb_img_class" id="facebook" src="../static/fb_img.png" alt="img">
-                <img class="ig_img_class" id="instagram" src="../static/ig_img.png" alt="img">
+                <img class="fb_img_class" id="facebook" src="{{ url_for('static', filename='fb_img.png') }}" alt="img">
+                <img class="ig_img_class" id="instagram" src="{{ url_for('static', filename='ig_img.png') }}" alt="img">
             </div>
         </nav>
         {%- endblock navbar %}
@@ -97,7 +97,7 @@
             <div class="row">
 
                 <div id="firstSection" class="col-md-1 d-flex align-items-center">
-                    <img id="profilPhoto" src="../static/badge_shrink.png" alt="badge_shrink">
+                    <img id="profilPhoto" src="{{ url_for('static', filename='badge_shrink.png') }}" alt="badge_shrink">
                     <span id="less100">100 LAT PASJI</span>
                     <span id="less">
                         <p>↪︎ Wapienna 19A, Rząska</p>

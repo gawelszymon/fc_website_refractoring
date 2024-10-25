@@ -1,4 +1,5 @@
 function loadEntries() {
+
     fetch('/get_entries')
         .then(response => response.json())
         .then(data => {
@@ -30,7 +31,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -69,7 +70,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -111,7 +112,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -152,7 +153,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -193,7 +194,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -234,7 +235,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -275,7 +276,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -316,7 +317,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -357,7 +358,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -398,7 +399,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -439,7 +440,7 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
-                    if (window.location.pathname === '/addpost_adminaccess_password=lksvistularzaska') {
+                    if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
 
@@ -519,6 +520,5 @@ function deleteEntry(entryID) {
 }
 
 document.addEventListener('DOMContentLoaded', loadEntries); //call function loadentries after DOM loaded
-
 
 //handler it's a function which is assigned to the particular event in js, When this event occurs, the handler is called 
