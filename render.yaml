@@ -3,7 +3,7 @@ services:
     name: your-app-name
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python -m gunicorn app:app
+    startCommand: python -m gunicorn backend.server:app
     envVars:
       - key: PYTHON_VERSION
         value: 3.12
