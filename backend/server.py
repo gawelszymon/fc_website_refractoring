@@ -226,5 +226,8 @@ def inject_pages():
     pages = Page.query.filter_by(is_active=True).all()
     return dict(pages=pages)
 
+port = int(os.environ.get('PORT', 5000))
+
+
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=5001, debug=True) #test
+    app.run(host='0.0.0.0',port=port, debug=True) #test
