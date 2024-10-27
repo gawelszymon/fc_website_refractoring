@@ -1,20 +1,27 @@
 import os
 from datetime import datetime
-
-from flask import Flask, jsonify, render_template, request, send_from_directory, abort
+from urllib.parse import quote_plus
+from flask import Flask, jsonify, render_template, request, send_from_directory # type: ignore #ignore
 from flask_cors import CORS  # type: ignore #ignore
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy # type: ignore #ignore
 
 app = Flask(__name__, template_folder="../frontend/templates", static_folder='../frontend/static')  #init of flask app
 CORS(app)
 
+password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))  # URL encode the password
+db_host = os.getenv('DB_HOST', 'autorack.proxy.rlwy.net')
+db_port = os.getenv('DB_PORT', '35721')
+db_name = os.getenv('DB_NAME', 'railway')
+db_user = os.getenv('DB_USER', 'postgres')
+
 #sql alchemy lets map database into the code
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///entries.db'  #setting up the localization of database
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa@autorack.proxy.rlwy.net:35721/railway'  #setting up the localization of database
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
 db = SQLAlchemy(app)
 
 class Entry(db.Model):  #table's name is created based on class name, but converted to lower case
+    __tablename__ = 'entry'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=False)
     content = db.Column(db.Text, nullable=False)
@@ -22,6 +29,7 @@ class Entry(db.Model):  #table's name is created based on class name, but conver
     entry_type = db.Column(db.Text, nullable=False)
     
 class TeamDatabase(db.Model): #TODO
+    __tablename__ = 'team_database'
     id = db.Column(db.Integer, primary_key=True)
     subpage = db.Column(db.String(100), nullable=False, unique=True)
     group = db.Column(db.String(100), nullable=False)
@@ -198,7 +206,7 @@ def update_team_data():
 
 @app.route('/api/pages', methods=['GET'])
 def get_pages():
-    pages = Page.query.all()
+    pages = Page.query.order_by(Page.page_name.asc()).all()
     return jsonify([{
         'id': page.id,
         "page_name": page.page_name,
