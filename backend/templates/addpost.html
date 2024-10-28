@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="forum-container">
+    <h1 id="forum-header"></h1>
+    <div class="form-container">
+        <input type="text" id="username" placeholder="name">
+        <textarea id="content" placeholder="message"></textarea>
+
+        <select id="entry_type">
+            <option value="main_page">main page</option>
+            <option value="senior">senior</option>
+            <option value="subacademy1">subacademy1</option>
+            <option value="subacademy2">subacademy2</option>
+            <option value="subacademy3">subacademy3</option>
+            <option value="subacademy4">subacademy4</option>
+            <option value="subacademy5">subacademy5</option>
+            <option value="subacademy6">subacademy6</option>
+            <option value="subacademy7">subacademy7</option>
+            <option value="subacademy8">subacademy8</option>
+            <option value="subacademy9">subacademy9</option>
+        </select>
+
+        <button onclick="addEntry()">Send</button>
+    </div>
+    <div id="entries0-panel">
+        <div id="entries0"></div>
+    </div>
+    <div id ="entries_senior"></div>
+    <div id="entries1"></div>
+    <div id="entries2"></div>
+    <div id="entries3"></div>
+    <div id="entries4"></div>
+    <div id="entries5"></div>
+    <div id="entries6"></div>
+    <div id="entries7"></div>
+    <div id="entries8"></div>
+    <div id="entries9"></div>
+    
+    <table>
+        <thead>
+            <tr>
+                <th id="th1">Subpage's Name</th>
+                <th>Displayed Name</th>
+                <th>Active</th>
+                <th id="th2"></th>
+            </tr>
+        </thead>
+        <tbody id="pages-list"></tbody>
+    </table>    
+
+    <form id="update-team-form" onsubmit="event.preventDefault(); updateTeamData(document.getElementById('subpage-input').value);">
+        <label for="subpage-input">Subpage:</label>
+        <select id="subpage-input" required>
+            <option value="senior">senior</option>
+            <option value="subacademy1">subacademy1</option>
+            <option value="subacademy2">subacademy2</option>
+            <option value="subacademy3">subacademy3</option>
+            <option value="subacademy4">subacademy4</option>
+            <option value="subacademy5">subacademy5</option>
+            <option value="subacademy6">subacademy6</option>
+            <option value="subacademy7">subacademy7</option>
+            <option value="subacademy8">subacademy8</option>
+            <option value="subacademy9">subacademy9</option>
+        </select>
+
+        <label for="group-input">Group:</label>
+        <input type="text" id="group-input" placeholder="group's name" required>
+
+        <label for="coach-input">Coach:</label>
+        <input type="text" id="coach-input" placeholder="coach's name" required>
+
+        <label for="license-input">License:</label>
+        <input type="text" id="license-input" placeholder="coach's license" required>
+
+        <label for="time-input">Training's time:</label>
+        <input type="text" id="time-input" placeholder="training's time" required>
+
+        <label for="location-input">Training's destination:</label>
+        <input type="text" id="location-input" placeholder="training's destination" required>
+
+        <label for="league-input">Division:</label>
+        <input type="text" id="league-input" placeholder="division" required>
+
+        <label for="table-url-input">Table address:</label>
+        <input type="url" id="table-url-input" placeholder="table address" required>
+
+        <label for="photo-endpoint-input">Team photo address:</label>
+        <input type="url" id="photo-endpoint-input" placeholder="team's photo address" required>
+
+        <button type="submit">Update</button>
+    </form>
+
+</div>
+{% endblock %}

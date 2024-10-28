@@ -5,10 +5,10 @@ from flask import Flask, jsonify, render_template, request, send_from_directory 
 from flask_cors import CORS  # type: ignore #ignore
 from flask_sqlalchemy import SQLAlchemy # type: ignore #ignore
 
-app = Flask(__name__, template_folder="../frontend/templates", static_folder='../frontend/static')  #init of flask app
+app = Flask(__name__, template_folder="templates", static_folder='static')  #init of flask app
 CORS(app)
 
-password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))  # URL encode the password
+password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))
 db_host = os.getenv('DB_HOST', 'autorack.proxy.rlwy.net')
 db_port = os.getenv('DB_PORT', '35721')
 db_name = os.getenv('DB_NAME', 'railway')
@@ -28,7 +28,7 @@ class Entry(db.Model):  #table's name is created based on class name, but conver
     timestamp = db.Column(db.String(20), nullable=False)
     entry_type = db.Column(db.Text, nullable=False)
     
-class TeamDatabase(db.Model): #TODO
+class TeamDatabase(db.Model):
     __tablename__ = 'team_database'
     id = db.Column(db.Integer, primary_key=True)
     subpage = db.Column(db.String(100), nullable=False, unique=True)
@@ -134,7 +134,7 @@ def add_entry():
 
 @app.route('/get_entries', methods=['GET'])
 def get_entries():
-    entries = Entry.query.all()
+    entries = Entry.query.order_by(Entry.timestamp.desc()).all()
     entries_list = [{
         "id": entry.id,
         "username": entry.username,
@@ -238,4 +238,4 @@ port = int(os.environ.get('PORT', 5000))
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0',port=port, debug=True) #test
+    app.run(host='0.0.0.0',port=port, debug=True)
