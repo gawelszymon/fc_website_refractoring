@@ -5,7 +5,7 @@ from flask import Flask, jsonify, render_template, request, send_from_directory 
 from flask_cors import CORS  # type: ignore #ignore
 from flask_sqlalchemy import SQLAlchemy # type: ignore #ignore
 
-app = Flask(__name__, template_folder="templates", static_folder='static')  #init of flask app
+app = Flask(__name__, template_folder="../frontend/templates", static_folder='../frontend/static')  #init of flask app
 CORS(app)
 
 password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))
@@ -99,6 +99,10 @@ def subacademy9():
 def senior():
     return render_template('senior.html')
 
+@app.route('/galeria')
+def galeria():
+    return render_template('galeria.html')
+
 @app.route('/about')
 def about():
     return render_template('about.html')
@@ -178,7 +182,7 @@ def get_team_data(group_name):
             "location": team.location,
             "league": team.league,
             "table_url": team.table_url,
-            "photo_endpoint": team.photo_endpoint            
+            "photo_endpoint": team.photo_endpoint
         }
     else:
         return{"error": "There is not accurate team"}, 404

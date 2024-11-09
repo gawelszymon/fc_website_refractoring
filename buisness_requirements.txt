@@ -1,0 +1,6 @@
+1) Dodac do navbar galeria
+2) dodca dynamiczne dodawnie zdjec na stronie głownej
+3) baza danych powinna zwracac obecną konfiguracje podstron
+4) do postów dodać mozliwosc galerii zdjec
+5) mozliwosc dodawnia lokalnie przechowywanych zdjeć
+6) deadline 23.12
