@@ -1,9 +1,10 @@
 import os
 from datetime import datetime
 from urllib.parse import quote_plus
-from flask import Flask, jsonify, render_template, request, send_from_directory # type: ignore #ignore
-from flask_cors import CORS  # type: ignore #ignore
-from flask_sqlalchemy import SQLAlchemy # type: ignore #ignore
+from flask import Flask, jsonify, render_template, request, send_from_directory, Response
+from flask_cors import CORS
+from flask_sqlalchemy import SQLAlchemy
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, template_folder="../frontend/templates", static_folder='../frontend/static')  #init of flask app
 CORS(app)
@@ -48,6 +49,12 @@ class Page(db.Model):
     page_name = db.Column(db.String(100), nullable=False, unique=True)
     display_name = db.Column(db.String(100), nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
+    
+class Img(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    img = db.Column(db.Text, nullable=False)
+    name = db.Column(db.Text, unique=True, nullable=False)
+    mimetype = db.Column(db.Text, nullable=False)
 
     
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
@@ -238,8 +245,30 @@ def inject_pages():
     pages = Page.query.filter_by(is_active=True).all()
     return dict(pages=pages)
 
-port = int(os.environ.get('PORT', 5000))
+@app.route('/upload_photo', methods=['POST'])
+def upload_photo():
+    pic = request.files.get('pic')
+    
+    if not pic:
+        return 'Picture han not been uploaded', 400
+    
+    filename = secure_filename(pic.filename)
+    mimetype = pic.mimetype
+    
+    img = Img(img=pic.read(), mimetype=mimetype, name=filename)
+    db.session.add(img)
+    db.session.commit()
+    
+    return 'Image has been uploaded properly', 200
 
+@app.route('/download_photo/<int:id>')
+def download_photo(id):
+    img = Img.query.filter_by(id=id).first()
+    if not img:
+        return "No img with requested id", 404
+    return Response(img.img, mimetype=img.mimetype)
+
+port = int(os.environ.get('PORT', 5000))
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=port, debug=True)
