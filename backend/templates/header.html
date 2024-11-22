@@ -1,0 +1,128 @@
+<head>
+    {%- block head %}
+
+    {%- block metas %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {%- endblock metas %}
+
+    <title>{% block title %}{{ title|default("Wisła Rząska - Strona Oficjalna", true) }}{% endblock title %}</title>
+
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    {% block styles %}
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='../static/style.css') }}">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='../static/style_swipper.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='badge_shrink.png') }}">
+    {% endblock %}
+    
+
+    {%- block scripts %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+
+    <script src="{{ url_for('static', filename='slideshow.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='app.js') }}"></script>
+    <script src="{{ url_for('static', filename='forum_script.js') }}"></script>
+    <script src="{{ url_for('static', filename='page_content.js') }}"></script>
+
+    {%- endblock scripts %}
+
+    
+    {%- endblock head %}
+</head>
+
+<body{% block body_attribs %}{% endblock body_attribs %}>
+
+    {% block navbar %}
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">LKS Wisła Rząska 1925</a>
+            <div class="row"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'index' %}active{% endif %}" aria-current="page" href="{{ url_for('index') }}"
+                        style="{% if request.endpoint == 'index' %}color: #333399;{% else %}color: black;{% endif %}">Aktualności</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle {% if request.endpoint == 'academy' or request.endpoint == 'subacademy1' %}active{% endif %}" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                        style="{% if request.endpoint == 'subacademy1' or request.endpoint == 'subacademy2' or request.endpoint == 'subacademy3'
+                        or request.endpoint == 'subacademy4' or request.endpoint == 'subacademy5' or request.endpoint == 'subacademy6' or request.endpoint == 'subacademy7'
+                        or request.endpoint == 'subacademy8' or request.endpoint == 'subacademy9' %}color: #333399;{% else %}color: black;{% endif %}">
+                            Akademia
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            {% for page in pages %}
+                            <li><a class="dropdown-item {% if request.endpoint == 'page.page_name' %}active{% endif %}" href="{{url_for(page.page_name)}}">{{ page.display_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'senior' %}active{% endif %}" href="{{ url_for('senior') }}"
+                        style="{% if request.endpoint == 'senior' %}color: #333399;{% else %}color: black;{% endif %}">Seniorzy</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'gallery' %}active{% endif %}" href="{{ url_for('gallery') }}"
+                        style="{% if request.endpoint == 'gallery' %}color: #333399;{% else %}color: black;{% endif %}">Galeria</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}"
+                        style="{% if request.endpoint == 'about' %}color: #333399;{% else %}color: black;{% endif %}">O&nbsp;Klubie</a>
+                    </li>
+                </ul>
+                <!-- <form class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-light" type="submit">Search</button>
+                    </form> -->
+            </div>
+        </div>
+        </div>
+        <div class="col-md-1">
+            <img class="fb_img_class" id="facebook" src="{{ url_for('static', filename='fb_img.png') }}" alt="img">
+            <img class="ig_img_class" id="instagram" src="{{ url_for('static', filename='ig_img.png') }}" alt="img">
+        </div>
+    </nav>
+    {%- endblock navbar %}
+
+    <div class="p-4 rounded">
+        <div class="row">
+
+            <div id="firstSection" class="col-md-1 d-flex align-items-center">
+                <img id="profilPhoto" src="{{ url_for('static', filename='badge_shrink.png') }}" alt="badge_shrink">
+                <span id="less100">100 LAT PASJI</span>
+                <span id="less">
+                    <p>↪︎ Wapienna 19A, Rząska</p>
+                    <p>email: lkswislarzaska@gmail.com</p>
+                    <p>tel: 666690015</p>
+                </span>
+            </div>
+
+
+            <div id="secondSection" class="col-md-6";>
+                <p id="name"> Ludowy Klub Sportowy Wisła Rząska</p>
+                <p id="anniversary">JUBILEUSZ 100-LECIA KLUBU</p>
+            </div>
+
+            <div id="thirdSection" class="col-md-5";>
+                <p id="localization">↪︎ Wapienna 19A, Rząska</p>
+                <p id="mail">email: lkswislarzaska@gmail.com</p>
+                <p id="tel">tel: 666690015</p>
+            </div>
+
+        </div>
+    </div>
+
+    {% block content -%}
+    {%- endblock content %}
+
+</body>
