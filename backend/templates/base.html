@@ -19,7 +19,7 @@
         {% block styles %}
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='../static/style.css') }}">
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='../static/style_swipper.css') }}">
-        <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='../static/web_badge.png') }}">
+        <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='badge_shrink.png') }}">
         {% endblock %}
         
 
@@ -75,6 +75,10 @@
                             style="{% if request.endpoint == 'senior' %}color: #333399;{% else %}color: black;{% endif %}">Seniorzy</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {% if request.endpoint == 'gallery' %}active{% endif %}" href="{{ url_for('gallery') }}"
+                            style="{% if request.endpoint == 'gallery' %}color: #333399;{% else %}color: black;{% endif %}">Galeria</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {% if request.endpoint == 'about' %}active{% endif %}" href="{{ url_for('about') }}"
                             style="{% if request.endpoint == 'about' %}color: #333399;{% else %}color: black;{% endif %}">O&nbsp;Klubie</a>
                         </li>
@@ -97,8 +101,8 @@
             <div class="row">
 
                 <div id="firstSection" class="col-md-1 d-flex align-items-center">
-                    <img id="profilPhoto" src="{{ url_for('static', filename='web_badge.png') }}" alt="badge_shrink">
-                    <span id="less100">100 LAT</span>
+                    <img id="profilPhoto" src="{{ url_for('static', filename='badge_shrink.png') }}" alt="badge_shrink">
+                    <span id="less100">100 LAT PASJI</span>
                     <span id="less">
                         <p>↪︎ Wapienna 19A, Rząska</p>
                         <p>email: lkswislarzaska@gmail.com</p>

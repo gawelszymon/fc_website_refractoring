@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__, template_folder="../frontend/templates", static_folder='../frontend/static')  #init of flask app
+app = Flask(__name__, template_folder="./templates", static_folder='./static')  #init of flask app
 CORS(app)
 
 password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))
@@ -106,9 +106,9 @@ def subacademy9():
 def senior():
     return render_template('senior.html')
 
-@app.route('/galeria')
-def galeria():
-    return render_template('galeria.html')
+@app.route('/gallery')
+def gallery():
+    return render_template('gallery.html')
 
 @app.route('/about')
 def about():
