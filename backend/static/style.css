@@ -2,7 +2,7 @@
 body {
     font-family: "Afacad Flux", sans-serif;
     font-weight: 400;
-    background-image: url("background_photo_5.png");
+    background-image: url("background/background_photo_5.png");
     /* background-color: #f8f9fa;*/
     background-size: cover;
 }
@@ -48,7 +48,7 @@ body {
 }
 
 .p-4.rounded {
-    background-image: url("header_background.png");
+    background-image: url("background/header_background.png");
     background-size: cover;
     margin-bottom: 50px;
 }
@@ -545,35 +545,35 @@ tbody td button:disabled {
 
 @media (max-width: 1808px) {
     .p-4.rounded {
-        background-image: url("header_background_2.png");
+        background-image: url("background/header_background_2.png");
         background-size: cover;
     }
 }
 
 @media (max-width: 1682px) {
     .p-4.rounded {
-        background-image: url("header_background_3.png");
+        background-image: url("background/header_background_3.png");
         background-size: cover;
     }
 }
 
 @media (max-width: 1583px) {
     .p-4.rounded {
-        background-image: url("header_background_4.png");
+        background-image: url("background/header_background_4.png");
         background-size: cover;
     }
 }
 
 @media (max-width: 1459px) {
     .p-4.rounded {
-        background-image: url("header_background_5.png");
+        background-image: url("background/header_background_5.png");
         background-size: cover;
     }
 }
 
 @media (max-width: 1404px) {
     .p-4.rounded {
-        background-image: url("header_background_6.png");
+        background-image: url("background/header_background_6.png");
         background-size: cover;
     }
 }
@@ -596,7 +596,7 @@ tbody td button:disabled {
     }
 
     .p-4.rounded {
-        background-image: url("header_background_7.png");
+        background-image: url("background/header_background_7.png");
         background-size: cover;
     }
 }
@@ -604,7 +604,7 @@ tbody td button:disabled {
 @media (max-width: 1040px) {
 
     .p-4.rounded {
-        background-image: url("header_background_8.png");
+        background-image: url("background/header_background_8.png");
         background-size: cover;
     }
 }
@@ -612,7 +612,7 @@ tbody td button:disabled {
 @media (max-width: 900px) {
 
     .p-4.rounded {
-        background-image: url("header_background_9.png");
+        background-image: url("background/header_background_9.png");
         background-size: cover;
     }
 }
@@ -620,7 +620,7 @@ tbody td button:disabled {
 @media (max-width: 855px) {
 
     .p-4.rounded {
-        background-image: url("header_background_10.png");
+        background-image: url("background/header_background_10.png");
         background-size: cover;
     }
 }
@@ -628,7 +628,7 @@ tbody td button:disabled {
 @media (max-width: 767px) {
 
     .p-4.rounded {
-        background-image: url("header_background_11.png");
+        background-image: url("background/header_background_11.png");
         background-size: cover;
     }
 }

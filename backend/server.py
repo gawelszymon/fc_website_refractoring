@@ -5,6 +5,7 @@ from flask import Flask, jsonify, render_template, request, send_from_directory,
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug.utils import secure_filename
+from sqlalchemy.sql import func
 
 app = Flask(__name__, template_folder="./templates", static_folder='./static')  #init of flask app
 CORS(app)
@@ -55,6 +56,12 @@ class Img(db.Model):
     img = db.Column(db.Text, nullable=False)
     name = db.Column(db.Text, unique=True, nullable=False)
     mimetype = db.Column(db.Text, nullable=False)
+    
+class Images(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    image = db.Column(db.Text, nullable=False)
+    data = db.Column(db.LargeBinary, nullable=False)
+    upload_date = db.Column(db.DateTime, default=func.now())
 
     
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
@@ -247,26 +254,34 @@ def inject_pages():
 
 @app.route('/upload_photo', methods=['POST'])
 def upload_photo():
-    pic = request.files.get('pic')
+    if 'image' not in request.files:
+        return jsonify({'error': 'No image provided'}), 400
     
-    if not pic:
-        return 'Picture han not been uploaded', 400
+    file = request.files['image']
+    if file.filename == '':
+        return jsonify({'error': 'No selected file'}), 400
     
-    filename = secure_filename(pic.filename)
-    mimetype = pic.mimetype
+    if not file.mimetype.startswith('image/'):
+        return jsonify({'error': 'File is not an image'}), 400
     
-    img = Img(img=pic.read(), mimetype=mimetype, name=filename)
-    db.session.add(img)
-    db.session.commit()
+    filename = secure_filename(file.filename)
+    image_data = file.read()
     
-    return 'Image has been uploaded properly', 200
-
-@app.route('/download_photo/<int:id>')
-def download_photo(id):
-    img = Img.query.filter_by(id=id).first()
-    if not img:
-        return "No img with requested id", 404
-    return Response(img.img, mimetype=img.mimetype)
+    try:
+        new_image = Images(
+            image=filename,
+            data=image_data,
+            upload_date=datetime.now()
+        )
+        
+        db.session.add(new_image)
+        db.session.commit()
+        
+        return jsonify({'message': 'Image uploaded successfully', 'image_url': f'/teams_photos/{filename}'}), 201
+    except Exception as e:
+        db.session.rollback()
+        print(f"Error: {e}")
+        return jsonify({'error': 'Internal Server Error'}), 500
 
 port = int(os.environ.get('PORT', 5000))
 

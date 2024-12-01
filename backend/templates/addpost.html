@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <div class="forum-container">
-    <h1 id="forum-header"></h1>
+
+    <form id="uploadForm">
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="submit">Upload Image</button>
+    </form>
+    
     <div class="form-container">
         <input type="text" id="username" placeholder="name">
         <textarea id="content" placeholder="message"></textarea>
@@ -91,4 +96,6 @@
     </form>
 
 </div>
+
+<script type="module" src="{{url_for('static', filename='js/photo_upload.js')}}"></script>
 {% endblock %}
