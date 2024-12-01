@@ -283,6 +283,15 @@ def upload_photo():
         print(f"Error: {e}")
         return jsonify({'error': 'Internal Server Error'}), 500
 
+@app.route('/download_photos')
+def download_photos():
+    images = Images.query.all()
+    return jsonify([{
+        'id': img.id,
+        'name': img.image,
+        'upload_date': img.upload_date.strftime('%Y-%m-%d %H:%M:%S')
+    }for img in images])
+
 port = int(os.environ.get('PORT', 5000))
 
 if __name__ == '__main__':

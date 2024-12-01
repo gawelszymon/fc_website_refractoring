@@ -1,5 +1,5 @@
 document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-    e.precentDefault();
+    e.preventDefault();
 
     const formData = new FormData();
     const imageFile = document.getElementById('imageInput').files[0];
