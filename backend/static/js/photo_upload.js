@@ -1,18 +1,28 @@
-document.getElementById('uploadForm').addEventListener('submit', async (e) => {
-    e.preventDefault();
+document.addEventListener('DOMContentLoaded', () => {
+    const uploadButton = document.getElementById('uploadButton');
+    uploadButton.addEventListener('click', uploadPhoto);
+});
 
-    const formData = new FormData();
-    const imageFile = document.getElementById('imageInput').files[0];
-    formData.append('image', imageFile);
+async function uploadPhoto(event) {
+    event.preventDefault(); // Prevent the default form submission
 
-    try {   //i can utilize await only in async function, it lets me wait for the promise to resolve and it is more readable than using .then()
+    const form = document.getElementById('uploadForm');
+    const formData = new FormData(form);
+
+    try {
         const response = await fetch('/upload_photo', {
             method: 'POST',
             body: formData
         });
-        const result = await response.json();
-        console.log('Upload successful:', result);
+
+        if (response.ok) {
+            alert('Image uploaded successfully!');
+            window.location.reload();
+        } else {
+            alert('Failed to upload image.');
+        }
     } catch (error) {
-        console.error('Error uploading photo:', error);
+        console.error('Error uploading image:', error);
+        alert('An error occurred while uploading the image.');
     }
-});
+}

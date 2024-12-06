@@ -1,14 +1,18 @@
 import os
 from datetime import datetime
 from urllib.parse import quote_plus
-from flask import Flask, jsonify, render_template, request, send_from_directory, Response
+
+from flask import (Flask, Response, jsonify, render_template, request, send_from_directory)
 from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
-from werkzeug.utils import secure_filename
 from sqlalchemy.sql import func
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__, template_folder="./templates", static_folder='./static')  #init of flask app
 CORS(app)
+
+UPLOADED_PHOTOS = './uploaded_photos'
+app.config['UPLOADED_PHOTOS'] = UPLOADED_PHOTOS
 
 password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))
 db_host = os.getenv('DB_HOST', 'autorack.proxy.rlwy.net')
@@ -59,9 +63,8 @@ class Img(db.Model):
     
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    image = db.Column(db.Text, nullable=False)
-    data = db.Column(db.LargeBinary, nullable=False)
-    upload_date = db.Column(db.DateTime, default=func.now())
+    name = db.Column(db.String(255), nullable=False)
+    path = db.Column(db.String(255), nullable=False)
 
     
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
@@ -254,43 +257,37 @@ def inject_pages():
 
 @app.route('/upload_photo', methods=['POST'])
 def upload_photo():
-    if 'image' not in request.files:
-        return jsonify({'error': 'No image provided'}), 400
+    pic = request.files['pic']
     
-    file = request.files['image']
-    if file.filename == '':
-        return jsonify({'error': 'No selected file'}), 400
+    if not pic:
+        return 'No pic uploaded!', 400
     
-    if not file.mimetype.startswith('image/'):
-        return jsonify({'error': 'File is not an image'}), 400
+    filename = secure_filename(pic.filename)
+    filepath = os.path.join(app.config['UPLOADED_PHOTOS'], filename)
+    pic.save(filepath)
     
-    filename = secure_filename(file.filename)
-    image_data = file.read()
+    img = Images(name=filename, path=filepath)
+    db.session.add(img)
+    db.session.commit()
     
-    try:
-        new_image = Images(
-            image=filename,
-            data=image_data,
-            upload_date=datetime.now()
-        )
-        
-        db.session.add(new_image)
-        db.session.commit()
-        
-        return jsonify({'message': 'Image uploaded successfully', 'image_url': f'/teams_photos/{filename}'}), 201
-    except Exception as e:
-        db.session.rollback()
-        print(f"Error: {e}")
-        return jsonify({'error': 'Internal Server Error'}), 500
+    return 'Img has been uploaded!', 201
 
-@app.route('/download_photos')
+@app.route('/image/<int:image_id>')
+def get_image(image_id):
+    img = Images.query.filter_by(id=image_id).first()
+    if img is None:
+        return jsonify({'error': 'Image not found'}), 404
+
+    response = send_from_directory(app.config['UPLOADED_PHOTOS'], img.name)
+    return response
+
+@app.route('/download_photos', method=['GET'])
 def download_photos():
     images = Images.query.all()
     return jsonify([{
-        'id': img.id,
-        'name': img.image,
-        'upload_date': img.upload_date.strftime('%Y-%m-%d %H:%M:%S')
-    }for img in images])
+        'id': image.id,
+        'name': image.name
+    }for image in images])
 
 port = int(os.environ.get('PORT', 5000))
 
