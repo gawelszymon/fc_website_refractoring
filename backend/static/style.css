@@ -755,3 +755,79 @@ tbody td button:disabled {
             font-style: italic;
         }
 }
+
+/* Styles for the upload form */
+#uploadForm {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+#uploadForm input[type="file"] {
+    margin-bottom: 10px;
+}
+
+#uploadForm button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333399;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#uploadForm button:hover {
+    opacity: 0.9;
+}
+
+/* Styles for the stored images section */
+.stored-images {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9fc;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 50px;
+}
+
+.stored-images h1 {
+    margin-bottom: 20px;
+    text-align: center;
+    font-size: 25px;
+}
+
+.img-container {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.img-container p {
+    margin: 0 10px;
+}
+
+.img-container button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #333399;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.img-container button:hover {
+    opacity: 0.9;
+}

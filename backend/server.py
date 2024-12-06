@@ -281,13 +281,23 @@ def get_image(image_id):
     response = send_from_directory(app.config['UPLOADED_PHOTOS'], img.name)
     return response
 
-@app.route('/download_photos', method=['GET'])
+@app.route('/download_photos', methods=['GET'])
 def download_photos():
     images = Images.query.all()
     return jsonify([{
         'id': image.id,
         'name': image.name
     }for image in images])
+    
+@app.route('/delete_photo/<int:image_id>', methods=['DELETE'])
+def delete_photo(image_id):
+    img = Images.query.get(image_id)
+    if img:
+        db.session.delete(img)
+        db.session.commit()
+        return jsonify({"message": "Img has been already delated"}), 200
+    else:
+        return jsonify({"error": "Img has not been deleted"}), 404
 
 port = int(os.environ.get('PORT', 5000))
 
