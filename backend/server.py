@@ -273,13 +273,13 @@ def get_image(image_id):
 
 @app.route('/download_photos', methods=['GET'])
 def download_photos():
-    images = Images.query.all()
+    images = Images.query.order_by(Images.id.asc()).all()
     return jsonify([{
         'id': image.id,
         'name': image.name,
         'main_page': image.main_page,
         'gallery': image.gallery
-    }for image in images])
+    } for image in images])
     
 @app.route('/delete_photo/<int:image_id>', methods=['DELETE'])
 def delete_photo(image_id):
@@ -321,6 +321,18 @@ def publish_gallery(image_id):
             "gallery": img.gallery
             }), 200
     return jsonify({"error": "Img has not been changed"}), 404
+
+@app.route('/get_main_images', methods=['GET'])
+def get_main_images():
+    main_images = Images.query.filter_by(main_page=True).all()
+    slides_html = ''
+    for image in main_images:
+        slides_html += f'''
+                <div class="swiper-slide">
+                    <img src="/teams_photos/{image.name}" alt="Main page image {image.id}">
+                </div>
+            '''
+    return jsonify({"html": slides_html})
 
 port = int(os.environ.get('PORT', 5000))
 
