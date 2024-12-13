@@ -11,30 +11,27 @@ style_link.rel = 'stylesheet';
 style_link.href = 'static/gallery_react.css';
 document.head.appendChild(style_link);
 
+var data = [];
+
+async function fetchGalleryImages() {
+    try {
+        const response = await fetch('/get_gallery_images');
+        if (!response.ok) {
+            throw new Error('Failed to fetch gallery images');
+        }
+        const result = await response.json();
+        data = result.pictures;
+        console.log('Fetched data:', data);
+    } catch (error) {
+        console.error('Error fetching gallery images:', error);
+    }
+}
+
+await fetchGalleryImages();
+
 var Content = function Content() {
 
-    var data = [{
-        id: 1,
-        imgSrc: Img1
-    }, {
-        id: 2,
-        imgSrc: Img2
-    }, {
-        id: 3,
-        imgSrc: Img3
-    }, {
-        id: 4,
-        imgSrc: Img4
-    }, {
-        id: 5,
-        imgSrc: Img5
-    }, {
-        id: 6,
-        imgSrc: Img6
-    }, {
-        id: 7,
-        imgSrc: Img7
-    }];
+
 
     var _React$useState = React.useState(false),
         model = _React$useState[0],

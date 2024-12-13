@@ -334,6 +334,17 @@ def get_main_images():
             '''
     return jsonify({"html": slides_html})
 
+@app.route('/get_gallery_images', methods=['GET'])
+def get_gallery_images():
+    gallery = Images.query.filter_by(gallery=True).all()
+    pictures = []
+    for image in gallery:
+        pictures.append({
+            'id': image.id,
+            'imgSrc': f'/teams_photos/{image.name}'
+        })
+    return jsonify({"pictures": pictures})
+
 port = int(os.environ.get('PORT', 5000))
 
 if __name__ == '__main__':
