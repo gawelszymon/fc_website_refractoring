@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.deleteImage = deleteImage;
     window.publishMain = publishMain;
+    window.publishGallery = publishGallery;
 
     downloadPhotos();
 });
@@ -52,12 +53,16 @@ async function downloadPhotos() {
         photos.forEach(img => {
             const imgContainer = document.createElement('div');
             imgContainer.className = 'img-container';
+
+            const mpButtonColor = img.main_page ? 'blue' : 'gray';
+            const gaButtonColor = img.gallery ? 'blue' : 'gray';
+
             imgContainer.innerHTML = `
                 <p>ID: ${img.id}</p>
                 <p>Name: ${img.name}</p>
                 <button onclick="deleteImage(${img.id})">RM</button>
-                <button onclick="publishMain(${img.id})">MP</button>
-                <button onclick="publishGallery(${img.id})">GA</button>
+                <button onclick="publishMain(${img.id})" style="background-color: ${mpButtonColor}">MP</button>
+                <button onclick="publishGallery(${img.id})" style="background-color: ${gaButtonColor}">GA</button>
             `;
             imagesGrid.appendChild(imgContainer);
         });
@@ -93,7 +98,7 @@ async function deleteImage(imageId) {
 async function publishMain(imageId) {
     try {
         const response = await fetch(`/publish_main/${imageId}`, {
-            method: 'GET',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -103,20 +108,31 @@ async function publishMain(imageId) {
             throw new Error('Failed to publish main.');
         }
 
-        const feedback = await response.json();
-        const name = feedback.name;
-
-        console.log(name);
-
-        const swiperWrapper = document.querySelector('.swiper-wrapper');
-        const newSlide = document.createElement('div');
-        newSlide.className = 'swiper-slide';
-        newSlide.innerHTML = `<img src="/teams_photos/${name}" alt="Published Image">`;
-        swiperWrapper.appendChild(newSlide);
-
-        alert('Image published as main successfully!');
+        await downloadPhotos();
+        
     } catch (error) {
         console.error('Error publishing main:', error);
         alert('An error occurred while publishing main.');
+    }
+}
+
+async function publishGallery(imageId) {
+    try {
+        const response = await fetch(`/publish_gallery/${imageId}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to publish gallery.');
+        }
+
+        await downloadPhotos();
+        
+    } catch (error) {
+        console.error('Error publishing gallery:', error);
+        alert('An error occurred while publishing gallery.');
     }
 }

@@ -65,6 +65,8 @@ class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     path = db.Column(db.String(255), nullable=False)
+    main_page = db.Column(db.Boolean, nullable=False, default=False)
+    gallery = db.Column(db.Boolean, nullable=False, default=False)
 
     
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
@@ -274,7 +276,9 @@ def download_photos():
     images = Images.query.all()
     return jsonify([{
         'id': image.id,
-        'name': image.name
+        'name': image.name,
+        'main_page': image.main_page,
+        'gallery': image.gallery
     }for image in images])
     
 @app.route('/delete_photo/<int:image_id>', methods=['DELETE'])
@@ -294,13 +298,29 @@ def delete_photo(image_id):
 def serve_images(photo):
     return send_from_directory(UPLOADED_PHOTOS, photo)
 
-@app.route('/publish_main/<int:image_id>', methods=['GET'])
+@app.route('/publish_main/<int:image_id>', methods=['POST'])
 def publish_main(image_id):
     img = Images.query.get(image_id)
     if img:
-        return jsonify({"name": img.name}), 201
-    else:
-        return jsonify({"error": "Img has not been published"}), 404
+        img.main_page = not img.main_page
+        db.session.commit()
+        return jsonify({
+            "id": img.id,
+            "main_page": img.main_page
+            }), 200
+    return jsonify({"error": "Img has not been changed"}), 404
+
+@app.route('/publish_gallery/<int:image_id>', methods=['POST'])
+def publish_gallery(image_id):
+    img = Images.query.get(image_id)
+    if img:
+        img.gallery = not img.gallery
+        db.session.commit()
+        return jsonify({
+            "id": img.id,
+            "gallery": img.gallery
+            }), 200
+    return jsonify({"error": "Img has not been changed"}), 404
 
 port = int(os.environ.get('PORT', 5000))
 

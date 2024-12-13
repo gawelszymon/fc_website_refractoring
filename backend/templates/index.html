@@ -50,6 +50,19 @@
         console.log('Width: ' + window.innerWidth + 'px');
 
         document.addEventListener('DOMContentLoaded', loadEntries);
+
+        // Check for new main image in localStorage
+        const newMainImage = localStorage.getItem('newMainImage');
+        if (newMainImage) {
+            const swiperWrapper = document.querySelector('.swiper-wrapper');
+            const newSlide = document.createElement('div');
+            newSlide.className = 'swiper-slide';
+            newSlide.innerHTML = `<img src="/teams_photos/${newMainImage}" alt="Published Image">`;
+            swiperWrapper.appendChild(newSlide);
+
+            // Remove the flag from localStorage
+            localStorage.removeItem('newMainImage');
+        }
     </script>
     <script type="module" src="{{url_for('static', filename='js/photo_upload.js')}}"></script>
 {% endblock %}
