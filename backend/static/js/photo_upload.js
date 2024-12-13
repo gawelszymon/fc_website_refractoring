@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     uploadButton.addEventListener('click', uploadPhoto);
 
     window.deleteImage = deleteImage;
+    window.publishMain = publishMain;
 
     downloadPhotos();
 });
@@ -54,7 +55,9 @@ async function downloadPhotos() {
             imgContainer.innerHTML = `
                 <p>ID: ${img.id}</p>
                 <p>Name: ${img.name}</p>
-                <button onclick="deleteImage(${img.id})">Remove</button>
+                <button onclick="deleteImage(${img.id})">RM</button>
+                <button onclick="publishMain(${img.id})">MP</button>
+                <button onclick="publishGallery(${img.id})">GA</button>
             `;
             imagesGrid.appendChild(imgContainer);
         });
@@ -84,5 +87,36 @@ async function deleteImage(imageId) {
     } catch (error) {
         console.error('Error deleting image:', error);
         alert('An error occurred while deleting the image.');
+    }
+}
+
+async function publishMain(imageId) {
+    try {
+        const response = await fetch(`/publish_main/${imageId}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to publish main.');
+        }
+
+        const feedback = await response.json();
+        const name = feedback.name;
+
+        console.log(name);
+
+        const swiperWrapper = document.querySelector('.swiper-wrapper');
+        const newSlide = document.createElement('div');
+        newSlide.className = 'swiper-slide';
+        newSlide.innerHTML = `<img src="/teams_photos/${name}" alt="Published Image">`;
+        swiperWrapper.appendChild(newSlide);
+
+        alert('Image published as main successfully!');
+    } catch (error) {
+        console.error('Error publishing main:', error);
+        alert('An error occurred while publishing main.');
     }
 }

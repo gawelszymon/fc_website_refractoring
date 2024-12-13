@@ -70,8 +70,6 @@ class Images(db.Model):
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
     db.create_all()           #avability to databse needs this context, "db.create_all" it's like a safeguard for ovetwriting- not to multiplicate some content
 
-TEAMS_PHOTOS_DIR = 'teams_photos'
-
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -175,16 +173,6 @@ def delete_entry(entry_id):
         return jsonify({"message": "Entry has been already delated"}), 200
     else:
         return jsonify({"error": "Entry has not been deleted"}), 404
-        
-
-@app.route('/teams_photos')
-def list_images():
-    files = [f for f in os.listdir(TEAMS_PHOTOS_DIR) if f.endswith('.png')]
-    return jsonify(files)
-
-@app.route('/teams_photos/<photo>')
-def serve_images(photo):
-    return send_from_directory(TEAMS_PHOTOS_DIR, photo) #TODO
 
 @app.route('/api/team/<group_name>')
 def get_team_data(group_name):
@@ -293,11 +281,26 @@ def download_photos():
 def delete_photo(image_id):
     img = Images.query.get(image_id)
     if img:
+        file_path = os.path.join(app.config['UPLOADED_PHOTOS'], img.name)
+        if os.path.exists(file_path):
+            os.remove(file_path)
         db.session.delete(img)
         db.session.commit()
         return jsonify({"message": "Img has been already delated"}), 200
     else:
         return jsonify({"error": "Img has not been deleted"}), 404
+
+@app.route('/teams_photos/<photo>')
+def serve_images(photo):
+    return send_from_directory(UPLOADED_PHOTOS, photo)
+
+@app.route('/publish_main/<int:image_id>', methods=['GET'])
+def publish_main(image_id):
+    img = Images.query.get(image_id)
+    if img:
+        return jsonify({"name": img.name}), 201
+    else:
+        return jsonify({"error": "Img has not been published"}), 404
 
 port = int(os.environ.get('PORT', 5000))
 
