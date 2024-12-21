@@ -34,12 +34,17 @@ function loadEntries() {
                     if(entry.photo !== 'null_photo') {
                         const photoDiv = document.createElement('div');
                         photoDiv.classList.add('photo');
-                        const imgElement = document.createElement('img');
-                        imgElement.src = entry.photo;
-                        imgElement.style.maxWidth = '100%';
-                        imgElement.style.height = 'auto';
-                        photoDiv.appendChild(imgElement);
-                        entryDiv.appendChild(photoDiv);
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.style.maxWidth = '100%';
+                            imgElement.style.height = 'auto';
+                            photoDiv.appendChild(imgElement);
+                            entryDiv.appendChild(photoDiv);
+                        })
                     }
                     
 
@@ -48,7 +53,9 @@ function loadEntries() {
                         entry_typeDiv.textContent = entry.entry_type;
 
                         const photo_nameDiv = document.createElement('div');
-                        photo_nameDiv.textContent = entry.photo;
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -103,7 +110,7 @@ function loadEntries() {
                     entriesContainer.appendChild(entryDiv);
 
                 } else if (entry.entry_type === 'subacademy2' && document.getElementById('entries2')) {
-                    entryType = document.getElementById('entries2');
+                    const entryType = document.getElementById('entries2');
 
                     const entriesContainer = entryType;
 
@@ -144,7 +151,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy3' && document.getElementById('entries3')) {
-                    entryType = document.getElementById('entries3');
+                    const entryType = document.getElementById('entries3');
 
                     const entriesContainer = entryType;
 
@@ -185,7 +192,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy4' && document.getElementById('entries4')) {
-                    entryType = document.getElementById('entries4');
+                    const entryType = document.getElementById('entries4');
 
                     const entriesContainer = entryType;
 
@@ -226,7 +233,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy5' && document.getElementById('entries5')) {
-                    entryType = document.getElementById('entries5');
+                    const entryType = document.getElementById('entries5');
 
                     const entriesContainer = entryType;
 
@@ -267,7 +274,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy6' && document.getElementById('entries6')) {
-                    entryType = document.getElementById('entries6');
+                    const entryType = document.getElementById('entries6');
 
                     const entriesContainer = entryType;
 
@@ -308,7 +315,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy7' && document.getElementById('entries7')) {
-                    entryType = document.getElementById('entries7');
+                    const entryType = document.getElementById('entries7');
 
                     const entriesContainer = entryType;
 
@@ -349,7 +356,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy8' && document.getElementById('entries8')) {
-                    entryType = document.getElementById('entries8');
+                    const entryType = document.getElementById('entries8');
 
                     const entriesContainer = entryType;
 
@@ -390,7 +397,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'subacademy9' && document.getElementById('entries9')) {
-                    entryType = document.getElementById('entries9');
+                    const entryType = document.getElementById('entries9');
 
                     const entriesContainer = entryType;
 
@@ -431,7 +438,7 @@ function loadEntries() {
 
                     entriesContainer.appendChild(entryDiv);
                 } else if (entry.entry_type === 'senior' && document.getElementById('entries_senior')) {
-                    entryType = document.getElementById('entries_senior');
+                    const entryType = document.getElementById('entries_senior');
 
                     const entriesContainer = entryType;
 
@@ -482,7 +489,7 @@ function addEntry() {
     const username = document.getElementById('username').value;
     const content = document.getElementById('content').value;
     const entry_type = document.getElementById('entry_type').value;
-    
+
     const checkboxes = document.querySelectorAll('#add_post_photo input[type="checkbox"]:checked');
     const photoValues = Array.from(checkboxes).map(checkbox => checkbox.value);
     const photo = photoValues.join(',');
