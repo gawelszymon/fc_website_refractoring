@@ -832,3 +832,10 @@ tbody td button:disabled {
 .img-container button:hover {
     opacity: 0.9;
 }
+
+.form-container label {
+    margin-left: 10px;
+    /* Adjust the value as needed */
+    margin-right: 10px;
+    /* Adjust the value as needed */
+}

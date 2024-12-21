@@ -482,7 +482,10 @@ function addEntry() {
     const username = document.getElementById('username').value;
     const content = document.getElementById('content').value;
     const entry_type = document.getElementById('entry_type').value;
-    const photo = document.getElementById('add_post_photo').value;
+    
+    const checkboxes = document.querySelectorAll('#add_post_photo input[type="checkbox"]:checked');
+    const photoValues = Array.from(checkboxes).map(checkbox => checkbox.value);
+    const photo = photoValues.join(',');
 
     console.log(username);
 

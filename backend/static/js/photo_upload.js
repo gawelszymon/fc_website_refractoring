@@ -155,10 +155,13 @@ async function downloadPostPhotos() {
         const selectElementphotos = document.getElementById('add_post_photo');
 
         photos.forEach(photo => {
-            const option = document.createElement('option');
-            option.value = `/teams_photos/${photo.name}`;
-            option.text = photo.name;
-            selectElementphotos.appendChild(option);
+            const label = document.createElement('label');
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = `/teams_photos/${photo.name}`;
+            label.textContent = photo.name;
+            label.prepend(checkbox);
+            selectElementphotos.appendChild(label)
         });
     } catch (error) {
         console.error('Error downloading photos:', error);
