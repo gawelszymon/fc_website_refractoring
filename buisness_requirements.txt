@@ -12,3 +12,8 @@ z poziomu panelu administratora miec mozliwośc wysłania oraz usuniecie zdjecia
 gdzie to wyswietli mi sie pełna lista wszystkich zdjec z mojego serwera.
 
 nastepnie dan zdjecia bede mógł przydzielic do danej sekcji na mojej stronie.
+
+
+
+
+musi pobierac zdjecia z katalogu na serwesrze, wyswietlac je w sekcji select i nastepenie dodawac je na do odpowiedniego posta

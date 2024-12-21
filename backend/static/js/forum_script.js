@@ -9,7 +9,7 @@ function loadEntries() {
             data.forEach(entry => {
 
                 if (entry.entry_type === 'main_page' && document.getElementById('entries0')) {
-                    entryType = document.getElementById('entries0');
+                    const entryType = document.getElementById('entries0');
 
                     const entriesContainer = entryType;
 
@@ -31,9 +31,24 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if(entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+                        const imgElement = document.createElement('img');
+                        imgElement.src = entry.photo;
+                        imgElement.style.maxWidth = '100%';
+                        imgElement.style.height = 'auto';
+                        photoDiv.appendChild(imgElement);
+                        entryDiv.appendChild(photoDiv);
+                    }
+                    
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        photo_nameDiv.textContent = entry.photo;
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -42,13 +57,14 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
                     entriesContainer.appendChild(entryDiv);
 
                 } else if (entry.entry_type === 'subacademy1' && document.getElementById('entries1')) {
-                    entryType = document.getElementById('entries1');
+                    const entryType = document.getElementById('entries1');
 
                     const entriesContainer = entryType;
 
@@ -466,6 +482,7 @@ function addEntry() {
     const username = document.getElementById('username').value;
     const content = document.getElementById('content').value;
     const entry_type = document.getElementById('entry_type').value;
+    const photo = document.getElementById('add_post_photo').value;
 
     console.log(username);
 
@@ -474,14 +491,14 @@ function addEntry() {
         return;
     }
 
-    console.log('Sending data to server:', { username, content, entry_type });
+    console.log('Sending data to server:', { username, content, entry_type, photo });
 
     fetch('/add_entry', {       //fetch is utilized to get a request from a server
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({username, content, entry_type})
+        body: JSON.stringify({username, content, entry_type, photo})
 
         // console.log()
     })
@@ -495,6 +512,7 @@ function addEntry() {
             document.getElementById('username').value = '';
             document.getElementById('content').value = '';
             document.getElementById('entry_type').value = '';
+            document.getElementById('add_post_photo').value = '';
             location.reload();
         })
         .catch(error => {

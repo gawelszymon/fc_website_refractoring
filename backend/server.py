@@ -33,6 +33,7 @@ class Entry(db.Model):  #table's name is created based on class name, but conver
     content = db.Column(db.Text, nullable=False)
     timestamp = db.Column(db.String(20), nullable=False)
     entry_type = db.Column(db.Text, nullable=False)
+    photo = db.Column(db.Text, nullable=True)
     
 class TeamDatabase(db.Model):
     __tablename__ = 'team_database'
@@ -142,7 +143,8 @@ def add_entry():
             username = data['username'],
             content=data['content'],
             timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            entry_type=data['entry_type']
+            entry_type=data['entry_type'],
+            photo = data['photo']
         )
         db.session.add(new_entry)
         db.session.commit()
@@ -161,7 +163,8 @@ def get_entries():
         "username": entry.username,
         "content": entry.content,
         "timestamp": entry.timestamp,
-        "entry_type": entry.entry_type
+        "entry_type": entry.entry_type,
+        "photo": entry.photo
     } for entry in entries]
     
     return jsonify(entries_list)
