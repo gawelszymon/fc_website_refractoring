@@ -1,3 +1,32 @@
+function openFullscreenImage(photoURL) {
+    const overlay = document.createElement('div');
+    overlay.style.position = 'fixed';
+    overlay.style.top = 0;
+    overlay.style.left = 0;
+    overlay.style.width = '100%';
+    overlay.style.height = '100%';
+    overlay.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+    overlay.style.display = 'flex';
+    overlay.style.justifyContent = 'center';
+    overlay.style.alignItems = 'center';
+    overlay.style.zIndex = 1000;
+
+    const img = document.createElement('img');
+    img.src = photoURL;
+    img.style.maxWidth = '90%';
+    img.style.maxHeight = '90%';
+    img.style.borderRadius = '8px';
+    overlay.appendChild(img);
+
+    // Zamknięcie po kliknięciu
+    overlay.addEventListener('click', () => {
+        document.body.removeChild(overlay);
+    });
+
+    document.body.appendChild(overlay);
+}
+
+
 function loadEntries() {
 
     fetch('/get_entries')
@@ -40,11 +69,22 @@ function loadEntries() {
                         photosURLs.forEach(photoURL => {
                             const imgElement = document.createElement('img');
                             imgElement.src = photoURL.trim();
-                            imgElement.style.maxWidth = '100%';
-                            imgElement.style.height = 'auto';
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
                             photoDiv.appendChild(imgElement);
-                            entryDiv.appendChild(photoDiv);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+                            
                         })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
                     }
                     
 

@@ -835,7 +835,25 @@ tbody td button:disabled {
 
 .form-container label {
     margin-left: 10px;
-    /* Adjust the value as needed */
     margin-right: 10px;
-    /* Adjust the value as needed */
+}
+
+.photo {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(33%, 1fr));
+    gap: 10px;
+    width: 100%;
+}
+
+.photo img {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s;
+}
+
+.photo img:hover {
+    transform: scale(1.005);
 }
