@@ -1,3 +1,16 @@
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('update_button').addEventListener('click', function (event) {
+        event.preventDefault();
+        updateTeamData(document.getElementById('subpage-input').value);
+    });
+
+    document.getElementById('search_button').addEventListener('click', function (event) {
+        event.preventDefault();
+        const subpageName = document.getElementById('subpage-input').value;
+        fetchSubpageData(subpageName);
+    });
+});
+
 function fetchTeamData(subpageName) {
     fetch(`/api/team/${subpageName}`)
         .then(response => response.json())
@@ -17,6 +30,8 @@ function fetchTeamData(subpageName) {
         })
         .catch(error => console.error('Error fetching team data:', error));
 }
+
+console.log(fetchTeamData());
 
 function updateTeamData(subpageName) {
     const updateTeamData = {
@@ -38,13 +53,34 @@ function updateTeamData(subpageName) {
         },
         body: JSON.stringify(updateTeamData)
     })
-    .then(response => response.json())
-    .then(data => {
-        console.log('succes: ', data);
-        alert('INFO: team data updated successfully');
-    })
-    .catch(error => {
-        console.error("error while updating team data: ", error);
-        alert('ERROR: team data does not updated');
-    })
+        .then(response => response.json())
+        .then(data => {
+            console.log('success: ', data);
+            alert('INFO: team data updated successfully');
+            location.reload(); // Reload the page after successful update
+        })
+        .catch(error => {
+            console.error("error while updating team data: ", error);
+            alert('ERROR: team data was not updated');
+        });
+}
+
+function fetchSubpageData(subpageName) {
+    fetch(`/api/team/${subpageName}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                document.getElementById('subpage-info').innerHTML = '<p>Team not found</p>';
+            } else {
+                document.getElementById('group-input').value = data.group;
+                document.getElementById('coach-input').value = data.coach;
+                document.getElementById('license-input').value = data.license;
+                document.getElementById('time-input').value = data.time;
+                document.getElementById('location-input').value = data.location;
+                document.getElementById('league-input').value = data.league;
+                document.getElementById('table-url-input').value = data.table_url;
+                document.getElementById('photo-endpoint-input').value = data.photo_endpoint;
+            }
+        })
+        .catch(error => console.error('Error fetching team data:', error));
 }

@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     downloadPhotos();
     downloadPostPhotos();
+    downloadTeamPhotos();
 });
 
 async function uploadPhoto(event) {
@@ -162,6 +163,33 @@ async function downloadPostPhotos() {
             label.textContent = photo.name;
             label.prepend(checkbox);
             selectElementphotos.appendChild(label)
+        });
+    } catch (error) {
+        console.error('Error downloading photos:', error);
+    }
+}
+
+async function downloadTeamPhotos() {
+    try {
+        const response = await fetch('/download_photos', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to download photos.');
+        }
+
+        const photos = await response.json();
+        const selectElementphotos = document.getElementById('photo-endpoint-input');
+
+        photos.forEach(photo => {
+            const option = document.createElement('option');
+            option.value = `/teams_photos/${photo.name}`;
+            option.textContent = photo.name;
+            selectElementphotos.appendChild(option)
         });
     } catch (error) {
         console.error('Error downloading photos:', error);

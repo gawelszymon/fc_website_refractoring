@@ -62,7 +62,7 @@
         <tbody id="pages-list"></tbody>
     </table>    
 
-    <form id="update-team-form" onsubmit="event.preventDefault(); updateTeamData(document.getElementById('subpage-input').value);">
+    <form id="update-team-form">
         <label for="subpage-input">Subpage:</label>
         <select id="subpage-input" required>
             <option value="senior">senior</option>
@@ -99,9 +99,12 @@
         <input type="url" id="table-url-input" placeholder="table address" required>
 
         <label for="photo-endpoint-input">Team photo address:</label>
-        <input type="url" id="photo-endpoint-input" placeholder="team's photo address" required>
+        <select id="photo-endpoint-input" required>
+        </select>
 
-        <button type="submit">Update</button>
+        <button type="button" id="search_button">Search</button>
+        <h1></h1>
+        <button type="button" id="update_button">Update</button>
     </form>
 
 </div>

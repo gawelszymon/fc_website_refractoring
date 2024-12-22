@@ -181,7 +181,7 @@ body {
     opacity: 0.90;
 }
 
-#subpage-info img #team-photo {
+#subpage-info img#team-photo {
     display: block;
     max-width: 100%;
     height: auto;
