@@ -11,6 +11,14 @@ body {
     background-color: #f9f9fc !important;
 }
 
+.nav-link.active {
+    border-bottom: 1px solid #333399;
+}
+
+.nav-link:hover {
+    border-bottom: 2px solid #333399;
+}
+
 .navbar-nav {
     display: flex;
     width: 75%;
@@ -355,9 +363,7 @@ tbody td button:disabled {
     max-width: 1200px;
     margin: 0 auto;
     padding: 40px 20px;
-    background-color: #f9f9fc;
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
 }
 
@@ -365,7 +371,6 @@ tbody td button:disabled {
     margin-bottom: 30px;
     padding: 20px;
     background-color: #fff;
-    border-left: 4px solid #333399;
     border-radius: 5px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
 }
@@ -389,11 +394,11 @@ tbody td button:disabled {
     margin-top: 30px;
 }
 
-.sectionAbout:hover {
+/* .sectionAbout:hover {
     border-left-color: #1a1a80;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     transition: border-left-color 0.3s ease, box-shadow 0.3s ease;
-}
+} */
 
 /*pokaz slajdów*/
 

@@ -84,7 +84,7 @@ function Gallery() {
         React.createElement(
             'h1',
             { style: { textAlign: 'center' } },
-            'Gallery Wisla'
+            '' //header
         ),
         React.createElement(Content, null)
     );
