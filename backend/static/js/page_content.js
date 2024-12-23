@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-function fetchTeamData(subpageName) {
+function fetchTeamData(subpageName) { 
     fetch(`/api/team/${subpageName}`)
         .then(response => response.json())
         .then(data => {
@@ -30,8 +30,6 @@ function fetchTeamData(subpageName) {
         })
         .catch(error => console.error('Error fetching team data:', error));
 }
-
-console.log(fetchTeamData());
 
 function updateTeamData(subpageName) {
     const updateTeamData = {
