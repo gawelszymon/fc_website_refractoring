@@ -128,6 +128,9 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
@@ -136,9 +139,42 @@ function loadEntries() {
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -147,6 +183,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -167,20 +204,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -189,6 +259,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -208,20 +279,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -230,6 +334,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -249,20 +354,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -271,6 +409,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -290,20 +429,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -312,6 +484,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -331,20 +504,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -353,6 +559,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -372,20 +579,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -394,6 +634,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -413,20 +654,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -435,6 +709,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -454,20 +729,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -476,6 +784,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
@@ -495,20 +804,53 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
-
-                    const entry_typeDiv = document.createElement('div');
-                    entry_typeDiv.textContent = entry.entry_type;
 
                     entryDiv.appendChild(usernameDiv);
                     entryDiv.appendChild(timestampDiv);     //this variables are visibled bacause being send in data in json
                     entryDiv.appendChild(contentDiv);
 
+                    if (entry.photo !== 'null_photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.classList.add('photo');
+
+                        const photosURLs = entry.photo.split(',');
+
+                        photosURLs.forEach(photoURL => {
+                            const imgElement = document.createElement('img');
+                            imgElement.src = photoURL.trim();
+                            imgElement.addEventListener('click', () => openFullscreenImage(photoURL.trim()));
+                            photoDiv.appendChild(imgElement);
+
+                            if (photosURLs.length === 1) {
+                                imgElement.style.width = '150%';
+                                imgElement.style.height = 'auto';
+                            }
+
+                        })
+
+                        if (photosURLs.length === 1) {
+                            photoDiv.style.marginLeft = '12.5%';
+                            photoDiv.style.marginRight = 'auto';
+                        }
+
+                        entryDiv.appendChild(photoDiv);
+                    }
+
+
                     if (window.location.pathname.startsWith('/admin_panel/password/')) {
                         const entry_typeDiv = document.createElement('div');
                         entry_typeDiv.textContent = entry.entry_type;
+
+                        const photo_nameDiv = document.createElement('div');
+                        const photosNames = entry.photo.split(',');
+                        const cleanedPhotoNames = photosNames.map(photoName => photoName.trim().replace('/teams_photos/', ''));
+                        photo_nameDiv.innerHTML = cleanedPhotoNames.join(', ');
 
                         const deleteButton = document.createElement('button');
                         deleteButton.textContent = "Remove";
@@ -517,6 +859,7 @@ function loadEntries() {
                         });
 
                         entryDiv.appendChild(entry_typeDiv);
+                        entryDiv.appendChild(photo_nameDiv);
                         entryDiv.appendChild(deleteButton);
                     }
 
