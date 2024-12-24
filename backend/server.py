@@ -138,14 +138,24 @@ def add_entry():
         
         if 'username' not in data or 'content' not in data or 'entry_type' not in data:
             return jsonify({"error": "Missing username or content"}), 400
-                
-        new_entry = Entry(
-            username = data['username'],
-            content=data['content'],
-            timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
-            entry_type=data['entry_type'],
-            photo = data['photo']
-        )
+        
+        if data.get('is_pined') == 'pin':
+            new_entry = Entry(
+                username = data['username'],
+                content=data['content'],
+                timestamp='2100-10-28 15:57:24',
+                entry_type=data['entry_type'],
+                photo = data['photo'],
+            )
+        else:
+            new_entry = Entry(
+                username = data['username'],
+                content=data['content'],
+                timestamp=datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                entry_type=data['entry_type'],
+                photo = data['photo']
+            )
+            
         db.session.add(new_entry)
         db.session.commit()
         

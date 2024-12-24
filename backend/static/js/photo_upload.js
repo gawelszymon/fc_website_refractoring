@@ -160,7 +160,7 @@ async function downloadPostPhotos() {
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.value = `/teams_photos/${photo.name}`;
-            label.textContent = photo.name;
+            label.textContent =' ' + photo.name;
             label.prepend(checkbox);
             selectElementphotos.appendChild(label)
         });

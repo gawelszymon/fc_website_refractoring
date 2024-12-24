@@ -52,6 +52,9 @@ function loadEntries() {
                     const timestampDiv = document.createElement('div');
                     timestampDiv.classList.add('timestamp')
                     timestampDiv.textContent = entry.timestamp;
+                    if (entry.timestamp === '2100-10-28 15:57:24') {
+                        timestampDiv.textContent = 'Pinned';
+                    }
 
                     const contentDiv = document.createElement('div');
                     contentDiv.textContent = entry.content;
@@ -530,9 +533,19 @@ function addEntry() {
     const content = document.getElementById('content').value;
     const entry_type = document.getElementById('entry_type').value;
 
+    const checkbox1 = document.querySelector('#pin input[type="checkbox"]');
+    let is_pined = 'none'
+    if (checkbox1.checked) {
+        is_pined = checkbox1.value; // "pin", jeśli zaznaczone
+    }
+
     const checkboxes = document.querySelectorAll('#add_post_photo input[type="checkbox"]:checked');
     const photoValues = Array.from(checkboxes).map(checkbox => checkbox.value);
-    const photo = photoValues.join(',');
+    let photo = photoValues.join(',');
+
+    if (photo === '') {
+        photo = 'null_photo';
+    }
 
     console.log(username);
 
@@ -541,14 +554,14 @@ function addEntry() {
         return;
     }
 
-    console.log('Sending data to server:', { username, content, entry_type, photo });
+    console.log('Sending data to server:', { username, content, entry_type, photo, is_pined });
 
     fetch('/add_entry', {       //fetch is utilized to get a request from a server
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({username, content, entry_type, photo})
+        body: JSON.stringify({username, content, entry_type, photo, is_pined})
 
         // console.log()
     })
@@ -563,6 +576,7 @@ function addEntry() {
             document.getElementById('content').value = '';
             document.getElementById('entry_type').value = '';
             document.getElementById('add_post_photo').value = '';
+            document.getElementById('pin').value = '';
             location.reload();
         })
         .catch(error => {
