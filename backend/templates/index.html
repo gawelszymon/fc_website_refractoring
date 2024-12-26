@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+  <div id="main">
     <div class="slideshow-container">
         <div class="swiper">
             <!-- Additional required wrapper -->
@@ -65,4 +66,9 @@
         }
     </script>
     <script type="module" src="{{url_for('static', filename='js/get_main_images.js')}}"></script>
+  </div>
+
+  <footer id="footer">
+    <p>&copy; Szymon Gaweł 2025. All rights reserved.</p>
+  </footer>
 {% endblock %}

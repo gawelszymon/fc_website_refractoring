@@ -862,3 +862,10 @@ tbody td button:disabled {
 .photo img:hover {
     transform: scale(1.005);
 }
+
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    margin-top: 45px;
+}
