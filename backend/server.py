@@ -1,4 +1,5 @@
 import os
+from dotenv import load_dotenv
 from datetime import datetime
 from urllib.parse import quote_plus
 
@@ -8,20 +9,21 @@ from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.sql import func
 from werkzeug.utils import secure_filename
 
-app = Flask(__name__, template_folder="./templates", static_folder='./static')  #init of flask app
+app = Flask(__name__, template_folder="./templates", static_folder='./static')
 CORS(app)
 
 UPLOADED_PHOTOS = './uploaded_photos'
 app.config['UPLOADED_PHOTOS'] = UPLOADED_PHOTOS
 
-password = quote_plus(os.getenv('DB_PASSWORD', 'STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa'))
-db_host = os.getenv('DB_HOST', 'autorack.proxy.rlwy.net')
-db_port = os.getenv('DB_PORT', '35721')
-db_name = os.getenv('DB_NAME', 'railway')
-db_user = os.getenv('DB_USER', 'postgres')
+load_dotenv()
 
-#sql alchemy lets map database into the code
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:STxsPDbCOqDqALnSkqJbwzVrhTcIvqEa@autorack.proxy.rlwy.net:35721/railway'  #setting up the localization of database
+db_password = os.getenv('DB_PASSWORD')
+db_host = os.getenv('DB_HOST')
+db_port = os.getenv('DB_PORT')
+db_name = os.getenv('DB_NAME')
+db_user = os.getenv('DB_USER')
+
+app.config['SQLALCHEMY_DATABASE_URI'] = f'postgresql://{db_user}:{db_password}@{db_host}:{db_port}/{db_name}'
 app.config['SQLALCHEMY_TRACK_MODIFICATION'] = False
 
 db = SQLAlchemy(app)
