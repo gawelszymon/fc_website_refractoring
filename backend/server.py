@@ -58,12 +58,6 @@ class Page(db.Model):
     display_name = db.Column(db.String(100), nullable=False)
     is_active = db.Column(db.Boolean, nullable=False)
     
-class Img(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    img = db.Column(db.Text, nullable=False)
-    name = db.Column(db.Text, unique=True, nullable=False)
-    mimetype = db.Column(db.Text, nullable=False)
-    
 class Images(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
@@ -74,6 +68,10 @@ class Images(db.Model):
     
 with app.app_context():     #application context created, due to it- flask know to which app, current changes are refferd to, it's required because
     db.create_all()           #avability to databse needs this context, "db.create_all" it's like a safeguard for ovetwriting- not to multiplicate some content
+
+@app.route('/sitemap.xml')
+def sitemap():
+    return send_from_directory(os.path.join(app.root_path, 'static'), 'sitemap.xml')
 
 @app.route('/')
 def index():
